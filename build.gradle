@@ -40,7 +40,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	// Trickster
-	modImplementation("dev.enjarai:trickster:${property('deps.trickster')}")
+	modImplementation("dev.enjarai:trickster:${property('trickster')}")
 }
 
 processResources {

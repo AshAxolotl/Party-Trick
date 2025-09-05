@@ -1,7 +1,9 @@
 package com.ashaxolotl.partytrick;
 
+import com.ashaxolotl.partytrick.spell.trick.ModTricks;
 import net.fabricmc.api.ModInitializer;
 
+import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +21,11 @@ public class PartyTrick implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("Hello Fabric world!");
+		ModTricks.register();
+	}
+
+
+	public static Identifier id(String path) {
+		return Identifier.of(MOD_ID, path);
 	}
 }

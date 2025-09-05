@@ -12,7 +12,7 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/party-trick/icon.png",
+	"icon": "assets/partytrick/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
@@ -23,9 +23,9 @@
 		]
 	},
 	"mixins": [
-		"party-trick.mixins.json",
+		"partytrick.mixins.json",
 		{
-			"config": "party-trick.client.mixins.json",
+			"config": "partytrick.client.mixins.json",
 			"environment": "client"
 		}
 	],
@@ -33,7 +33,8 @@
 		"fabricloader": ">=0.17.2",
 		"minecraft": "~1.21.1",
 		"java": ">=21",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"trickster": "*"
 	},
 	"suggests": {
 		"another-mod": "*"
