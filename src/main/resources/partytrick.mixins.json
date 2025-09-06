@@ -3,7 +3,9 @@
 	"package": "com.ashaxolotl.partytrick.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin"
+		"BlockMixin",
+		"ItemMixin",
+		"PotionItemMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

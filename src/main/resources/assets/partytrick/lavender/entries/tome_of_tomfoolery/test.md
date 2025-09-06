@@ -6,10 +6,16 @@
 }
 ```
 
-Cool tricks to impress your friends!!!!!! 
+WOW TRICKS?!!!!!!
+(WIP)
+(yes translations are missing cry about it)
 
 ;;;;;
 
-<|trick@trickster:templates|trick-id=partytrick:is_even|>
+<|trick@trickster:templates|trick-id=partytrick:summon_snowball|>
 
-Returns whether the given number is even.
+Balling
+
+<|trick@trickster:templates|trick-id=partytrick:light_particle|>
+
+LET THERE BE LIGHT (particles)! 
