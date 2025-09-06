@@ -5,13 +5,13 @@
 	"name": "Party Trick",
 	"description": "This is an example description! Tell everyone what your mod is about!",
 	"authors": [
-		"Me!"
+		"AshAxolotl"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://ashaxolotl.com/",
+		"sources": "https://github.com/AshAxolotl/Party-Trick"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/partytrick/icon.png",
 	"environment": "*",
 	"entrypoints": {
