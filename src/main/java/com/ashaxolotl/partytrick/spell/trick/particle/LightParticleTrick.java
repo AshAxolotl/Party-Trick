@@ -1,6 +1,6 @@
 package com.ashaxolotl.partytrick.spell.trick.particle;
 
-import com.ashaxolotl.partytrick.PartyTrick;
+import com.ashaxolotl.partytrick.spell.blunder.ColorVectorInvalidRangeBlunder;
 import dev.enjarai.trickster.particle.SpellParticleOptions;
 import dev.enjarai.trickster.spell.Pattern;
 import dev.enjarai.trickster.spell.SpellContext;
@@ -17,7 +17,7 @@ import java.util.Optional;
 
 public class LightParticleTrick extends Trick<LightParticleTrick> {
     public LightParticleTrick() {
-        super(Pattern.of(1,2,3,4,5), Signature.of(FragmentType.VECTOR, FragmentType.VECTOR.optionalOfArg(), FragmentType.VECTOR.optionalOfArg(), LightParticleTrick::run, FragmentType.VECTOR));
+        super(Pattern.of(0,1,2,0,4,8,5,4,3,6,7,8), Signature.of(FragmentType.VECTOR, FragmentType.VECTOR.optionalOfArg(), FragmentType.VECTOR.optionalOfArg(), LightParticleTrick::run, FragmentType.VECTOR));
     }
 
     public VectorFragment run(SpellContext ctx, VectorFragment position, Optional<VectorFragment> optionalDelta, Optional<VectorFragment> optionalColor) throws BlunderException {
@@ -25,7 +25,10 @@ public class LightParticleTrick extends Trick<LightParticleTrick> {
         int color = 0xffffff; // Color of SPELL_WHITE particle
         if (optionalColor.isPresent()) {
             var colorVector = optionalColor.get();
-            color = new Color(Math.min((int) colorVector.x(), 225),Math.min((int) colorVector.y(), 225),Math.min((int) colorVector.z(), 225)).getRGB();
+            if (colorVector.x() < 0 || colorVector.x() > 255 || colorVector.y() < 0 || colorVector.y() > 255 || colorVector.z() < 0 || colorVector.z() > 255) {
+                throw new ColorVectorInvalidRangeBlunder(this, colorVector);
+            }
+            color = new Color((int) colorVector.x(), (int) colorVector.y(), (int) colorVector.z()).getRGB();
         }
 
         ctx.source().getWorld().spawnParticles(
