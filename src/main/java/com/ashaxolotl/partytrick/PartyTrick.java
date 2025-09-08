@@ -1,6 +1,6 @@
 package com.ashaxolotl.partytrick;
 
-import com.ashaxolotl.partytrick.spell.trick.ModTricks;
+import com.ashaxolotl.partytrick.spell.trick.Tricks;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.util.Identifier;
@@ -21,7 +21,7 @@ public class PartyTrick implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		ModTricks.register();
+		Tricks.register();
 	}
 
 
