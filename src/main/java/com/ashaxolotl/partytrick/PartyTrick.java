@@ -1,5 +1,6 @@
 package com.ashaxolotl.partytrick;
 
+import com.ashaxolotl.partytrick.item.ModItems;
 import com.ashaxolotl.partytrick.spell.trick.Tricks;
 import net.fabricmc.api.ModInitializer;
 
@@ -22,6 +23,7 @@ public class PartyTrick implements ModInitializer {
 		// Proceed with mild caution.
 
 		Tricks.register();
+		ModItems.register();
 	}
 
 

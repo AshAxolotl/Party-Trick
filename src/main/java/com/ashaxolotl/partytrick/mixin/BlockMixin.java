@@ -1,5 +1,9 @@
 package com.ashaxolotl.partytrick.mixin;
 
+import com.ashaxolotl.partytrick.PartyTrick;
+import dev.enjarai.trickster.block.ModularSpellConstructBlock;
+import dev.enjarai.trickster.block.SpellCastingBlockEntity;
+import dev.enjarai.trickster.block.SpellConstructBlock;
 import dev.enjarai.trickster.spell.ItemTriggerHelper;
 import dev.enjarai.trickster.spell.fragment.VectorFragment;
 import net.minecraft.block.Block;
@@ -26,7 +30,8 @@ public abstract class BlockMixin {
             )
     )
     private void triggerItemSpell(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack, CallbackInfo ci) {
-        if (placer instanceof ServerPlayerEntity) {
+        // TODO is there a better way to check if its a spell construct?
+        if (placer instanceof ServerPlayerEntity && !(Block.getBlockFromItem(itemStack.getItem()) instanceof ModularSpellConstructBlock || Block.getBlockFromItem(itemStack.getItem()) instanceof SpellConstructBlock)) {
             ItemTriggerHelper.trigger((ServerPlayerEntity) placer, itemStack, List.of(VectorFragment.of(pos)));
         }
     }

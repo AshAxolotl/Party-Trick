@@ -1,16 +1,16 @@
 {
-	"required": true,
-	"package": "com.ashaxolotl.partytrick.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"BlockMixin",
-		"ItemMixin",
-		"PotionItemMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
+  "required": true,
+  "package": "com.ashaxolotl.partytrick.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BlockMixin",
+    "ItemMixin",
+    "PotionItemMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
 	}
 }

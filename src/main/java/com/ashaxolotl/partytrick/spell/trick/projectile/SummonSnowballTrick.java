@@ -33,6 +33,6 @@ public class SummonSnowballTrick extends Trick<SummonSnowballTrick> {
     }
 
     private float cost(double dist) {
-        return (float) (20 + 2 * dist);
+        return (float) (10 + 4 * dist);
     }
 }
