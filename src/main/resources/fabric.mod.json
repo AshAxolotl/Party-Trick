@@ -22,6 +22,7 @@
 			"com.ashaxolotl.partytrick.PartyTrickClient"
 		]
 	},
+	"accessWidener" : "partytrick.accesswidener",
 	"mixins": [
 		"partytrick.mixins.json",
 		{

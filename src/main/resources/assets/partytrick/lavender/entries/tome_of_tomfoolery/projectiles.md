@@ -4,14 +4,14 @@
   "icon": "minecraft:wind_charge",
   "category": "trickster:ploys",
   "additional_search_terms": [
-    "Breeze's Ploy",
+    "Aang's Ploy",
     "Llama's Ploy",
     "Winters's Ploy"
   ]
 }
 ```
 
-Additional tricks related to projectiles. For more info check the projectiles entry. 
+Additional tricks related to projectiles added by Party Trick. For more info check the [Projectiles](^trickster:ploys/projectile) entry. 
 
 ;;;;;
 
@@ -23,7 +23,7 @@ Summons a wind charge at the given position, returning it. Requires a wind charg
 
 <|ploy@trickster:templates|trick-id=partytrick:summon_spit,cost=20G + 1G * distance ^ (distance / 3)|>
 
-Extracts spit out of the given llama entity or caster when available. Distance is the distance between the spit source and given position.
+Extracts spit out of the given mob or caster when available. Distance is the distance between the spit source and given position.
 
 ;;;;;
 

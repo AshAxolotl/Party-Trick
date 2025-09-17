@@ -1,0 +1,4 @@
+accessWidener v2 named
+
+accessible method net/minecraft/entity/passive/WolfEntity setCollarColor (Lnet/minecraft/util/DyeColor;)V
+accessible method net/minecraft/entity/passive/CatEntity setCollarColor (Lnet/minecraft/util/DyeColor;)V

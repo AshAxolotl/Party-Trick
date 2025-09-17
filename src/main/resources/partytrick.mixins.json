@@ -5,6 +5,7 @@
   "mixins": [
     "BlockMixin",
     "ItemMixin",
+    "NotACatboyMixin",
     "PotionItemMixin"
   ],
   "injectors": {

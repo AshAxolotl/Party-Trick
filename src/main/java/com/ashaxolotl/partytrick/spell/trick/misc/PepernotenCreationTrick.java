@@ -18,7 +18,7 @@ import java.util.Optional;
 
 public class PepernotenCreationTrick extends Trick<PepernotenCreationTrick> {
     public PepernotenCreationTrick() {
-        super(Pattern.of(3,4,5,8,6,3,1,5), Signature.of(FragmentType.SLOT.optionalOfArg(), PepernotenCreationTrick::run, FragmentType.VOID));
+        super(Pattern.of(3,4,5,1,3,6,8,5,7,4,1), Signature.of(FragmentType.SLOT.optionalOfArg(), PepernotenCreationTrick::run, FragmentType.VOID));
     }
 
     public VoidFragment run(SpellContext ctx, Optional<SlotFragment> slot) throws BlunderException {
@@ -44,7 +44,7 @@ public class PepernotenCreationTrick extends Trick<PepernotenCreationTrick> {
 
         try {
             ctx.useMana(this, 10);
-            ctx.source().offerOrDropItem(ModItems.PEPERNOTEN.getDefaultStack());
+            ctx.source().offerOrDropItem(ModItems.PEPERNOOT.getDefaultStack());
 
             return VoidFragment.INSTANCE;
         } catch (Exception e) {

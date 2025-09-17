@@ -17,6 +17,7 @@ import net.minecraft.entity.damage.DamageSources;
 import net.minecraft.entity.damage.DamageType;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.passive.LlamaEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.math.Vec3d;
 
@@ -25,12 +26,12 @@ import static net.minecraft.entity.damage.DamageTypes.SPIT;
 public class SummonSpitTrick extends Trick<SummonSpitTrick> {
     public SummonSpitTrick() {
         super(Pattern.of(0,4,8,2,4,6,0,1,2,5,8,7,6,3,0), Signature.of(FragmentType.VECTOR, SummonSpitTrick::fromCaster, FragmentType.ENTITY));
-        overload(Signature.of(FragmentType.VECTOR, FragmentType.ENTITY, SummonSpitTrick::fromLlama, FragmentType.ENTITY));
+        overload(Signature.of(FragmentType.VECTOR, FragmentType.ENTITY, SummonSpitTrick::fromEntity, FragmentType.ENTITY));
 
     }
 
     public EntityFragment fromCaster(SpellContext ctx, VectorFragment pos)  throws BlunderException {
-        var caster = ctx.source().getCaster().orElseThrow(() -> new NoPlayerBlunder(this)); // TODO is this the right blunder?
+        var caster = ctx.source().getCaster().orElseThrow(() -> new NoPlayerBlunder(this));
         ctx.useMana(this, cost(ctx.source().getPos().distance(pos.vector())));
 
         var world = ctx.source().getWorld();
@@ -41,16 +42,16 @@ public class SummonSpitTrick extends Trick<SummonSpitTrick> {
         return EntityFragment.from(projectile);
     }
 
-    public EntityFragment fromLlama(SpellContext ctx, VectorFragment pos, EntityFragment entity) throws BlunderException {
-        var llama = entity.getEntity(ctx).orElseThrow(() -> new UnknownEntityBlunder(this));
-        if (!(llama instanceof LlamaEntity)) {
+    public EntityFragment fromEntity(SpellContext ctx, VectorFragment pos, EntityFragment entityFragment) throws BlunderException {
+        var entity = entityFragment.getEntity(ctx).orElseThrow(() -> new UnknownEntityBlunder(this));
+        if (!(entity instanceof LivingEntity) || entity instanceof PlayerEntity) {
             throw new EntityInvalidBlunder(this);
         }
-        ctx.useMana(this, cost(llama.getPos().distanceTo((Vec3d) pos.vector())));
+        ctx.useMana(this, cost(entity.getPos().distanceTo((Vec3d) pos.vector())));
 
         var world = ctx.source().getWorld();
         var projectile = EntityType.LLAMA_SPIT.create(world);
-        projectile.setOwner(llama);
+        projectile.setOwner(entity);
         projectile.setPos(pos.x(), pos.y(), pos.z());
         world.spawnEntity(projectile);
         return EntityFragment.from(projectile);

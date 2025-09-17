@@ -1,12 +1,16 @@
 package com.ashaxolotl.partytrick;
 
 import com.ashaxolotl.partytrick.item.ModItems;
+import com.ashaxolotl.partytrick.misc.ColorHelper;
 import com.ashaxolotl.partytrick.spell.trick.Tricks;
+import dev.enjarai.trickster.Trickster;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.UUID;
 
 public class PartyTrick implements ModInitializer {
 	public static final String MOD_ID = "partytrick";

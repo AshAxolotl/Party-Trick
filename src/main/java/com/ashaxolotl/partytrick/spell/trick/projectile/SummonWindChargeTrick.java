@@ -21,7 +21,6 @@ public class SummonWindChargeTrick extends Trick<SummonWindChargeTrick> {
         super(Pattern.of(0,1,2,8,4,6,0,3,6,7,8,5,2), Signature.of(FragmentType.VECTOR, FragmentType.SLOT.optionalOfArg(), SummonWindChargeTrick::run, FragmentType.ENTITY));
     }
 
-    // TODO maybe a power option or at least an option for breeze wind charge
     public EntityFragment run(SpellContext ctx, VectorFragment pos, Optional<SlotFragment> optionalSlot) throws BlunderException {
         var stack = ctx.getStack(this, optionalSlot, s -> s.isOf(Items.WIND_CHARGE)).orElseThrow(() -> new MissingItemBlunder(this));
         var world = ctx.source().getWorld();

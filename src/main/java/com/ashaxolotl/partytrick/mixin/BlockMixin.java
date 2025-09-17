@@ -30,7 +30,7 @@ public abstract class BlockMixin {
             )
     )
     private void triggerItemSpell(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack, CallbackInfo ci) {
-        // TODO is there a better way to check if its a spell construct?
+        // is there a better way to check if its a spell construct?
         if (placer instanceof ServerPlayerEntity && !(Block.getBlockFromItem(itemStack.getItem()) instanceof ModularSpellConstructBlock || Block.getBlockFromItem(itemStack.getItem()) instanceof SpellConstructBlock)) {
             ItemTriggerHelper.trigger((ServerPlayerEntity) placer, itemStack, List.of(VectorFragment.of(pos)));
         }

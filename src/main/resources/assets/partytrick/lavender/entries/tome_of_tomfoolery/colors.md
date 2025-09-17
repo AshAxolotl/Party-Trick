@@ -18,6 +18,20 @@ TODO:
 
 ;;;;;
 
+<|ploy@trickster:templates|trick-id=partytrick:change_color,cost=20G|>
+
+;;;;;
+
+<|trick@trickster:templates|trick-id=partytrick:get_color|>
+
+;;;;;
+
+<|trick@trickster:templates|trick-id=partytrick:dye_to_vector|>
+
+
+;;;;;
+
+
 <|ploy@trickster:templates|trick-id=partytrick:conjure_colored_light,cost=20G|>
 
 Conjures a permanent light source at the given position. Optionally a color can be provided using a color vector.
@@ -28,10 +42,5 @@ Conjures a permanent light source at the given position. Optionally a color can 
 
 Conjures a light particle at the given position. Optionally a velocity and color vector can be provided.
 
+
 ;;;;;
-
-<|trick@trickster:templates|trick-id=partytrick:change_colored_light|>
-
-Change the color of a light at a given position to the given color vector. 
-
-MAY BE REMOVED IN THE FUTURE!!!
