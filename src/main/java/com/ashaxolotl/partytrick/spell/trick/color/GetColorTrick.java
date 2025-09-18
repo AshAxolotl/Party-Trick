@@ -52,6 +52,8 @@ public class GetColorTrick extends Trick<GetColorTrick> {
             return Optional.empty();
         }
 
-        return Optional.of(Either.left(new ItemTypeFragment(DyeItem.byColor(DyeColor.valueOf(colorString.toUpperCase())))));
+        Optional test = Optional.of(Either.left(new ItemTypeFragment(DyeItem.byColor(DyeColor.valueOf(colorString.toUpperCase())))));
+        PartyTrick.LOGGER.info(test.get().toString());
+        return test;
     }
 }
