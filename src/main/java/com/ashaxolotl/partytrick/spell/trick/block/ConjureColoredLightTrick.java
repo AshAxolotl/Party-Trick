@@ -2,7 +2,6 @@ package com.ashaxolotl.partytrick.spell.trick.block;
 
 import com.ashaxolotl.partytrick.PartyTrick;
 import com.ashaxolotl.partytrick.spell.blunder.ColorVectorInvalidRangeBlunder;
-import com.ibm.icu.text.MessagePattern;
 import dev.enjarai.trickster.block.LightBlock;
 import dev.enjarai.trickster.block.LightBlockEntity;
 import dev.enjarai.trickster.block.ModBlocks;

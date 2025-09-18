@@ -1,7 +1,6 @@
 package com.ashaxolotl.partytrick.misc;
 
 // CODE BASED OF SPECTRUM: https://github.com/DaFuqs/Spectrum/blob/1.21.1-aria-for-painters-mojmap/src/main/java/de/dafuqs/spectrum/helpers/BlockVariantHelper.java
-// TODO WHAT DOES THIS MEAN FOR THE LICENCE?
 
 import com.ashaxolotl.partytrick.PartyTrick;
 import net.minecraft.block.Block;

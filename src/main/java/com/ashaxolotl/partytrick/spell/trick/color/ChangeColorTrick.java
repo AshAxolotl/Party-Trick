@@ -95,15 +95,12 @@ public class ChangeColorTrick extends Trick<ChangeColorTrick> {
                 sheep.playSound(SoundEvents.ENTITY_EVOKER_PREPARE_WOLOLO);
             }
             sheep.setColor(dyeColor);
-        } else if ((entity instanceof  WolfEntity wolf) && wolf.isTamed()) {
+        } else if ((entity instanceof WolfEntity wolf) && wolf.isTamed()) {
             ctx.useMana(this, 20);
             wolf.setCollarColor(dyeColor);
         } else if (entity instanceof CatEntity cat  && cat.isTamed()) {
             ctx.useMana(this, 20);
             cat.setCollarColor(dyeColor);
-        } else if (entity instanceof ItemEntity) {
-            ctx.useMana(this, 20);
-            // TODO
         } else {
             throw new InvalidEntityBlunder(this);
         }
@@ -125,18 +122,10 @@ public class ChangeColorTrick extends Trick<ChangeColorTrick> {
             throw new ItemInvalidBlunder(this);
         }
 
-        ctx.useMana(this, 20);
+        ctx.useMana(this, 20 * itemStack.getCount());
         if (itemStack.getItem() != newItem) {
-            newItemStack.setCount(1);
-            var input = slot.move(this, ctx, 1);
-            try {
-                ctx.source().offerOrDropItem(newItemStack);
-            } catch (Exception e) {
-                ctx.source().offerOrDropItem(input);
-                throw e;
-            }
+            slot.setStack(newItemStack, this, ctx);
         }
-
-        return slot; // TODO should it return void?
+        return slot;
     }
 }

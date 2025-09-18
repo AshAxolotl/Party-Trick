@@ -11,47 +11,47 @@ import dev.enjarai.trickster.spell.blunder.BlunderException;
 import dev.enjarai.trickster.spell.fragment.FragmentType;
 import dev.enjarai.trickster.spell.fragment.ItemTypeFragment;
 import dev.enjarai.trickster.spell.fragment.VectorFragment;
+import dev.enjarai.trickster.spell.fragment.VoidFragment;
 import dev.enjarai.trickster.spell.trick.Trick;
+import dev.enjarai.trickster.spell.type.EitherRetType;
+import dev.enjarai.trickster.spell.type.RetType;
 import dev.enjarai.trickster.spell.type.Signature;
+import io.vavr.control.Either;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.DyeItem;
+import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import org.joml.Vector3d;
 
+import java.awt.*;
 import java.util.Optional;
+import java.util.Vector;
 
 public class GetColorTrick extends Trick<GetColorTrick> {
     public GetColorTrick() {
-        // TODO this doesnt work
-        super(Pattern.of(6,7,8), Signature.of(FragmentType.VECTOR, GetColorTrick::getBlockColorDye, FragmentType.ITEM_TYPE.optionalOfRet()));
-        overload(Signature.of(FragmentType.VECTOR, GetColorTrick::getBlockColorVector, FragmentType.VECTOR.optionalOfRet()));
+        super(Pattern.of(6,7,8), Signature.of(FragmentType.VECTOR, GetColorTrick::getBlockColor, FragmentType.ITEM_TYPE.or(FragmentType.VECTOR).optionalOfRet())); // .or(FragmentType.VOID)
     }
 
-
-    public Optional<VectorFragment> getBlockColorVector(SpellContext ctx, VectorFragment pos) throws BlunderException {
+    public Optional<Either<ItemTypeFragment, VectorFragment>> getBlockColor(SpellContext ctx, VectorFragment pos) throws BlunderException { // Either<ItemTypeFragment, VoidFragment>
         var blockPos = pos.toBlockPos();
         var world = ctx.source().getWorld();
 
         var entity = world.getBlockEntity(blockPos);
         if (entity instanceof SpellColoredBlockEntity blockEntity) { // allows for any SpellColoredBlockEntity. What seems to be only lights by default
-            return Optional.of(new VectorFragment(new Vector3d(0,0,0)));
-        } else {
-            return Optional.empty();
+            Color color = new Color(blockEntity.getColors()[0]);
+            return Optional.of(Either.right(new VectorFragment(new Vector3d(color.getRed(),color.getGreen(), color.getBlue()))));
         }
-    }
 
-    // TODO make it so it can also return a color vector!
-    public Optional<ItemTypeFragment> getBlockColorDye(SpellContext ctx, VectorFragment pos) throws BlunderException {
-        String colorString = ColorHelper.getDyeColorString(Registries.BLOCK.getId(ctx.source().getWorld().getBlockState(pos.toBlockPos()).getBlock()));
-        // TODO THIS SHOULD PROBABLY BE IMPROVED
-        try {
-            return Optional.of(new ItemTypeFragment(DyeItem.byColor(DyeColor.valueOf(colorString.toUpperCase()))));
-        } catch (Exception e) {
+        String colorString = ColorHelper.getDyeColorString(Registries.BLOCK.getId(world.getBlockState(blockPos).getBlock()));
+        if (colorString.isEmpty()) {
             return Optional.empty();
         }
+
+        return Optional.of(Either.left(new ItemTypeFragment(DyeItem.byColor(DyeColor.valueOf(colorString.toUpperCase())))));
     }
 }
