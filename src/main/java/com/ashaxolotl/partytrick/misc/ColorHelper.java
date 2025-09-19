@@ -5,7 +5,6 @@ package com.ashaxolotl.partytrick.misc;
 import com.ashaxolotl.partytrick.PartyTrick;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -17,8 +16,6 @@ import java.util.List;
 import java.util.Map;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 public class ColorHelper {
 
@@ -47,20 +44,11 @@ public class ColorHelper {
                 return colorString;
             }
         }
-
         return "";
     }
 
-    public static BlockState getBlockColorVariant(World world, BlockPos blockPos, DyeColor newColor) {
-        // TODO could block entities be implemented?
-        BlockEntity blockEntity = world.getBlockEntity(blockPos);
-        if (blockEntity != null) {
-            return Blocks.AIR.getDefaultState();
-        }
-
-        BlockState blockState = world.getBlockState(blockPos);
+    public static BlockState getBlockColorVariant(BlockState blockState, DyeColor newColor) {
         Block block = blockState.getBlock();
-
         // CHECK CACHE
         if (coloredBlockCache.containsKey(block)) {
             Map<DyeColor, Block> colorMap = coloredBlockCache.get(block);
@@ -75,9 +63,31 @@ public class ColorHelper {
 
         // If the block is a "color block" else give air
         Block returnBlock = Blocks.AIR;
-        if (!colorString.isEmpty()) {
+        if (newColor == null && !colorString.isEmpty()) {
+            // Gets the undyed version of a block
+            String path = identifier.getPath();
+            Identifier newIdentifier;// Will give air if it doesn't exist
+            if (path.contains("_stained_")) { // for glass
+                newIdentifier = Identifier.of(identifier.getNamespace(), path.replace(colorString + "_stained_", "").replace("_stained_" + colorString, ""));
+            } else {
+                newIdentifier = Identifier.of(identifier.getNamespace(), path.replace(colorString + "_", "").replace("_" + colorString, ""));
+            }
+            returnBlock = Registries.BLOCK.get(newIdentifier); // Will give air if it doesn't exist
+
+        } else if (!colorString.isEmpty()){
+            // Gets the dyed version from a dyed block
             Identifier newIdentifier = Identifier.of(identifier.getNamespace(), identifier.getPath().replace(colorString, newColor.toString()));
-            returnBlock = Registries.BLOCK.get(newIdentifier); // Will give air if the new color variant of the block doesn't exist
+            returnBlock = Registries.BLOCK.get(newIdentifier); // Will give air if it doesn't exist
+        } else {
+            // Gets the dyed version from a undyed block
+            // checks it in a few different ways because there is no consistency
+            for (String path : List.of(newColor + "_" + identifier.getPath(), identifier.getPath() + "_" + newColor, newColor + "_stained_" + identifier.getPath(), identifier.getPath() + "_stained_" + newColor)) {
+                Identifier newIdentifier = Identifier.of(identifier.getNamespace(), path);
+                returnBlock = Registries.BLOCK.get(newIdentifier); // Will give air if it doesn't exist
+                if (returnBlock != Blocks.AIR) {
+                    break;
+                }
+            }
         }
 
         // add to cache
@@ -108,11 +118,33 @@ public class ColorHelper {
         Identifier identifier = Registries.ITEM.getId(item);
         String colorString = getDyeColorString(identifier);
 
-        // If the item is a "color item" else give air
+        // If the block is a "color block" else give air
         Item returnItem = Items.AIR;
-        if (!colorString.isEmpty()) {
+        if (newColor == null && !colorString.isEmpty()) {
+            // Gets the undyed version of a block
+            String path = identifier.getPath();
+            Identifier newIdentifier;// Will give air if it doesn't exist
+            if (path.contains("_stained_")) { // for glass
+                newIdentifier = Identifier.of(identifier.getNamespace(), path.replace(colorString + "_stained_", "").replace("_stained_" + colorString, ""));
+            } else {
+                newIdentifier = Identifier.of(identifier.getNamespace(), path.replace(colorString + "_", "").replace("_" + colorString, ""));
+            }
+            returnItem = Registries.ITEM.get(newIdentifier); // Will give air if it doesn't exist
+
+        } else if (!colorString.isEmpty()){
+            // Gets the dyed version from a dyed block
             Identifier newIdentifier = Identifier.of(identifier.getNamespace(), identifier.getPath().replace(colorString, newColor.toString()));
-            returnItem = Registries.ITEM.get(newIdentifier); // Will give air if the new color variant of the item doesn't exist
+            returnItem = Registries.ITEM.get(newIdentifier); // Will give air if it doesn't exist
+        } else {
+            // Gets the dyed version from a undyed block
+            // checks it in a few different ways because there is no consistency
+            for (String path : List.of(newColor + "_" + identifier.getPath(), identifier.getPath() + "_" + newColor, newColor + "_stained_" + identifier.getPath(), identifier.getPath() + "_stained_" + newColor)) {
+                Identifier newIdentifier = Identifier.of(identifier.getNamespace(), path);
+                returnItem = Registries.ITEM.get(newIdentifier); // Will give air if it doesn't exist
+                if (returnItem != Items.AIR) {
+                    break;
+                }
+            }
         }
 
         // add to cache

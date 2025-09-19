@@ -2,7 +2,7 @@
 {
   "title": "Colors ",
   "icon": "minecraft:white_dye",
-  "category": "trickster:ploys",
+  "category": "trickster:tricks",
   "additional_search_terms": [
     "Illumination Ploy",
     "Radiance Ploy",
@@ -18,7 +18,7 @@ TODO:
 
 ;;;;;
 
-<|ploy@trickster:templates|trick-id=partytrick:change_color,cost=20G|>
+<|ploy@trickster:templates|trick-id=partytrick:change_color,cost=20G * amount|>
 
 ;;;;;
 

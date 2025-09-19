@@ -11,6 +11,8 @@ import dev.enjarai.trickster.spell.fragment.*;
 import dev.enjarai.trickster.spell.trick.Trick;
 import dev.enjarai.trickster.spell.type.Signature;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.SignBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
@@ -38,24 +40,30 @@ public class ChangeColorTrick extends Trick<ChangeColorTrick> {
     public VectorFragment changeBlockWithDye(SpellContext ctx, VectorFragment pos, ItemTypeFragment dyeItem) throws BlunderException {
         var blockPos = pos.toBlockPos();
         var world = ctx.source().getWorld();
+        var blockState = world.getBlockState(blockPos);
 
         expectLoaded(ctx, blockPos);
+        // TODO could block entities be implemented?
+        if (blockState.hasBlockEntity()) {
+            throw new BlockInvalidBlunder(this);
+        }
 
         if (!(dyeItem.item() instanceof DyeItem dye)) {
             throw new ItemInvalidBlunder(this);
         }
         DyeColor dyeColor = dye.getColor();
 
-        BlockState newBlockState = ColorHelper.getBlockColorVariant(world, blockPos, dyeColor);
+        BlockState newBlockState = ColorHelper.getBlockColorVariant(blockState, dyeColor);
         if (newBlockState.isAir()) {
             throw new BlockInvalidBlunder(this);
         }
 
         ctx.useMana(this, 20);
 
-        if (newBlockState != world.getBlockState(blockPos)) {
+        if (newBlockState != blockState) {
             world.setBlockState(blockPos, newBlockState);
         }
+
         return pos;
     }
 
