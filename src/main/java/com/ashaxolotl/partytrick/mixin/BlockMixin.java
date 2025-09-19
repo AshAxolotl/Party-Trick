@@ -1,8 +1,6 @@
 package com.ashaxolotl.partytrick.mixin;
 
-import com.ashaxolotl.partytrick.PartyTrick;
 import dev.enjarai.trickster.block.ModularSpellConstructBlock;
-import dev.enjarai.trickster.block.SpellCastingBlockEntity;
 import dev.enjarai.trickster.block.SpellConstructBlock;
 import dev.enjarai.trickster.spell.ItemTriggerHelper;
 import dev.enjarai.trickster.spell.fragment.VectorFragment;

@@ -1,6 +1,5 @@
 package com.ashaxolotl.partytrick.spell.trick.color;
 
-import com.ashaxolotl.partytrick.PartyTrick;
 import com.ashaxolotl.partytrick.misc.ColorHelper;
 import com.ashaxolotl.partytrick.spell.blunder.ColorVectorInvalidRangeBlunder;
 import dev.enjarai.trickster.block.SpellColoredBlockEntity;
@@ -11,33 +10,28 @@ import dev.enjarai.trickster.spell.fragment.*;
 import dev.enjarai.trickster.spell.trick.Trick;
 import dev.enjarai.trickster.spell.type.Signature;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.SignBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.passive.WolfEntity;
-import net.minecraft.item.DyeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.DyeColor;
 
 import java.awt.*;
+import java.util.Optional;
 
 public class ChangeColorTrick extends Trick<ChangeColorTrick> {
     public ChangeColorTrick() {
-        super(Pattern.of(3,4,5), Signature.of(FragmentType.VECTOR, FragmentType.VECTOR, ChangeColorTrick::changeBlockWithVector, FragmentType.VECTOR));
-        overload(Signature.of(FragmentType.VECTOR, FragmentType.ITEM_TYPE, ChangeColorTrick::changeBlockWithDye, FragmentType.VECTOR));
+        super(Pattern.of(2,4,6,1,8,6), Signature.of(FragmentType.VECTOR, FragmentType.VECTOR, ChangeColorTrick::changeBlockWithVector, FragmentType.VECTOR));
+        overload(Signature.of(FragmentType.VECTOR, FragmentType.ITEM_TYPE.optionalOfArg(), ChangeColorTrick::changeBlockWithDye, FragmentType.VECTOR));
+        overload(Signature.of(FragmentType.SLOT, FragmentType.ITEM_TYPE.optionalOfArg(), ChangeColorTrick::changeSlot, FragmentType.SLOT));
         overload(Signature.of(FragmentType.ENTITY, FragmentType.ITEM_TYPE, ChangeColorTrick::changeEntity, FragmentType.ENTITY));
-        overload(Signature.of(FragmentType.SLOT, FragmentType.ITEM_TYPE, ChangeColorTrick::changeSlot, FragmentType.SLOT));
 
     }
 
-    public VectorFragment changeBlockWithDye(SpellContext ctx, VectorFragment pos, ItemTypeFragment dyeItem) throws BlunderException {
+    public VectorFragment changeBlockWithDye(SpellContext ctx, VectorFragment pos, Optional<ItemTypeFragment> optionalDyeItem) throws BlunderException {
         var blockPos = pos.toBlockPos();
         var world = ctx.source().getWorld();
         var blockState = world.getBlockState(blockPos);
@@ -48,10 +42,16 @@ public class ChangeColorTrick extends Trick<ChangeColorTrick> {
             throw new BlockInvalidBlunder(this);
         }
 
-        if (!(dyeItem.item() instanceof DyeItem dye)) {
-            throw new ItemInvalidBlunder(this);
+        DyeColor dyeColor;
+        if (optionalDyeItem.isEmpty()) {
+            dyeColor = null;
+        } else {
+            if (!(optionalDyeItem.get().item() instanceof DyeItem dye)) {
+                throw new ItemInvalidBlunder(this);
+            }
+            dyeColor = dye.getColor();
         }
-        DyeColor dyeColor = dye.getColor();
+
 
         BlockState newBlockState = ColorHelper.getBlockColorVariant(blockState, dyeColor);
         if (newBlockState.isAir()) {
@@ -65,6 +65,32 @@ public class ChangeColorTrick extends Trick<ChangeColorTrick> {
         }
 
         return pos;
+    }
+
+    public SlotFragment changeSlot(SpellContext ctx, SlotFragment slot, Optional<ItemTypeFragment> optionalDyeItem) throws BlunderException {
+        DyeColor dyeColor;
+        if (optionalDyeItem.isEmpty()) {
+            dyeColor = null;
+        } else {
+            if (!(optionalDyeItem.get().item() instanceof DyeItem dye)) {
+                throw new ItemInvalidBlunder(this);
+            }
+            dyeColor = dye.getColor();
+        }
+
+        ItemStack itemStack = slot.reference(this, ctx);
+
+        ItemStack newItemStack = ColorHelper.getItemColorVariant(itemStack, dyeColor);
+        Item newItem = newItemStack.getItem();
+        if (newItem == Items.AIR) {
+            throw new ItemInvalidBlunder(this);
+        }
+
+        ctx.useMana(this, 20 * itemStack.getCount());
+        if (itemStack.getItem() != newItem) {
+            slot.setStack(newItemStack, this, ctx);
+        }
+        return slot;
     }
 
     public VectorFragment changeBlockWithVector(SpellContext ctx, VectorFragment pos, VectorFragment colorVector) throws BlunderException {
@@ -114,26 +140,5 @@ public class ChangeColorTrick extends Trick<ChangeColorTrick> {
         }
 
         return entityFragment;
-    }
-
-    public SlotFragment changeSlot(SpellContext ctx, SlotFragment slot, ItemTypeFragment dyeItem) throws BlunderException {
-        if (!(dyeItem.item() instanceof DyeItem dye)) {
-            throw new ItemInvalidBlunder(this);
-        }
-        DyeColor dyeColor = dye.getColor();
-
-        ItemStack itemStack = slot.reference(this, ctx);
-
-        ItemStack newItemStack = ColorHelper.getItemColorVariant(itemStack, dyeColor);
-        Item newItem = newItemStack.getItem();
-        if (newItem == Items.AIR) {
-            throw new ItemInvalidBlunder(this);
-        }
-
-        ctx.useMana(this, 20 * itemStack.getCount());
-        if (itemStack.getItem() != newItem) {
-            slot.setStack(newItemStack, this, ctx);
-        }
-        return slot;
     }
 }

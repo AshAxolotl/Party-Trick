@@ -27,4 +27,4 @@ the Glutton’s Hunger executes the inscribed spell when consumed.
 
 <|ploy@trickster:templates|trick-id=partytrick:pepernoten_creation,cost=10G|>
 
-needs sugar (TODO)
+I found this strange food in my shoes? I cant seem to stop eating it. So I created a spell to make it out of sugar.

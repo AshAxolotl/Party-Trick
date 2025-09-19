@@ -2,7 +2,6 @@ package com.ashaxolotl.partytrick.misc;
 
 // CODE BASED OF SPECTRUM: https://github.com/DaFuqs/Spectrum/blob/1.21.1-aria-for-painters-mojmap/src/main/java/de/dafuqs/spectrum/helpers/BlockVariantHelper.java
 
-import com.ashaxolotl.partytrick.PartyTrick;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;

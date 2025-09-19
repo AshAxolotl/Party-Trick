@@ -16,7 +16,7 @@ import java.awt.*;
 
 public class DyeToVectorTrick extends Trick<DyeToVectorTrick> {
     public DyeToVectorTrick() {
-        super(Pattern.of(0,1,2), Signature.of(FragmentType.ITEM_TYPE, DyeToVectorTrick::getDyeFromVector, FragmentType.VECTOR));
+        super(Pattern.of(1,6,8,1,4,7), Signature.of(FragmentType.ITEM_TYPE, DyeToVectorTrick::getDyeFromVector, FragmentType.VECTOR));
     }
 
     public VectorFragment getDyeFromVector(SpellContext ctx, ItemTypeFragment dyeItem) throws BlunderException {

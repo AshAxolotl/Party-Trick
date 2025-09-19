@@ -1,54 +1,41 @@
 package com.ashaxolotl.partytrick.spell.trick.color;
 
-import com.ashaxolotl.partytrick.PartyTrick;
 import com.ashaxolotl.partytrick.misc.ColorHelper;
-import dev.enjarai.trickster.Trickster;
 import dev.enjarai.trickster.block.SpellColoredBlockEntity;
 import dev.enjarai.trickster.spell.Pattern;
 import dev.enjarai.trickster.spell.SpellContext;
 import dev.enjarai.trickster.spell.blunder.*;
 import dev.enjarai.trickster.spell.fragment.*;
 import dev.enjarai.trickster.spell.trick.Trick;
-import dev.enjarai.trickster.spell.type.EitherRetType;
-import dev.enjarai.trickster.spell.type.RetType;
 import dev.enjarai.trickster.spell.type.Signature;
 import io.vavr.control.Either;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.item.DyeItem;
-import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
 import org.joml.Vector3d;
 
 import java.awt.*;
 import java.util.Optional;
-import java.util.Vector;
 
 public class GetColorTrick extends Trick<GetColorTrick> {
     public GetColorTrick() {
-        super(Pattern.of(6,7,8), Signature.of(FragmentType.VECTOR, GetColorTrick::getBlockColor, FragmentType.ITEM_TYPE.or(FragmentType.VECTOR).optionalOfRet()));
+        super(Pattern.of(0,3,6,4,0,5,6), Signature.of(FragmentType.VECTOR, GetColorTrick::getBlockColor, FragmentType.VECTOR.or(FragmentType.ITEM_TYPE).optionalOfRet()));
         overload(Signature.of(FragmentType.ENTITY, GetColorTrick::getEntityColor, FragmentType.ITEM_TYPE.optionalOfRet()));
         overload(Signature.of(FragmentType.ITEM_TYPE, GetColorTrick::getItemColor, FragmentType.ITEM_TYPE.optionalOfRet()));
     }
 
-    // TODO slot and entity support
-    public Optional<Either<ItemTypeFragment, VectorFragment>> getBlockColor(SpellContext ctx, VectorFragment pos) throws BlunderException { // Either<ItemTypeFragment, VoidFragment>
+    public Optional<Either<VectorFragment, ItemTypeFragment>> getBlockColor(SpellContext ctx, VectorFragment pos) throws BlunderException { // Either<ItemTypeFragment, VoidFragment>
         var blockPos = pos.toBlockPos();
         var world = ctx.source().getWorld();
 
         var entity = world.getBlockEntity(blockPos);
         if (entity instanceof SpellColoredBlockEntity blockEntity) { // allows for any SpellColoredBlockEntity. What seems to be only lights by default
             Color color = new Color(blockEntity.getColors()[0]);
-            return Optional.of(Either.right(new VectorFragment(new Vector3d(color.getRed(),color.getGreen(), color.getBlue()))));
+            return Optional.of(Either.left(new VectorFragment(new Vector3d(color.getRed(),color.getGreen(), color.getBlue())))); // TODO this currently doesnt work because of something on tricksters. Im to lazy to fix it here
         }
 
         String colorString = ColorHelper.getDyeColorString(Registries.BLOCK.getId(world.getBlockState(blockPos).getBlock()));
@@ -56,9 +43,7 @@ public class GetColorTrick extends Trick<GetColorTrick> {
             return Optional.empty();
         }
 
-        Optional test = Optional.of(Either.left(new ItemTypeFragment(DyeItem.byColor(DyeColor.valueOf(colorString.toUpperCase())))));
-        PartyTrick.LOGGER.info(test.get().toString());
-        return test;
+        return Optional.of(Either.right(new ItemTypeFragment(DyeItem.byColor(DyeColor.valueOf(colorString.toUpperCase())))));
     }
 
     public Optional<ItemTypeFragment> getEntityColor(SpellContext ctx, EntityFragment entityFragment) throws BlunderException {

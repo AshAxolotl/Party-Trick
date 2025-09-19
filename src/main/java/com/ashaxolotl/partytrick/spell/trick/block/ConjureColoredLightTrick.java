@@ -1,6 +1,5 @@
 package com.ashaxolotl.partytrick.spell.trick.block;
 
-import com.ashaxolotl.partytrick.PartyTrick;
 import com.ashaxolotl.partytrick.spell.blunder.ColorVectorInvalidRangeBlunder;
 import dev.enjarai.trickster.block.LightBlock;
 import dev.enjarai.trickster.block.LightBlockEntity;
@@ -41,7 +40,6 @@ public class ConjureColoredLightTrick extends Trick<ConjureColoredLightTrick> {
         if (!state.isReplaceable() || (!state.isAir() && !isWater && !dry)) {
             throw new BlockOccupiedBlunder(this, pos);
         }
-
 
         ctx.useMana(this, 20);
         world.setBlockState(blockPos, ModBlocks.LIGHT.getDefaultState().with(LightBlock.WATERLOGGED, waterlogged));
