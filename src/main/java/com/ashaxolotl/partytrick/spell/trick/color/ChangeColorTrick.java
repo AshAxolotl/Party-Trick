@@ -1,6 +1,7 @@
 package com.ashaxolotl.partytrick.spell.trick.color;
 
 import com.ashaxolotl.partytrick.misc.ColorHelper;
+import com.ashaxolotl.partytrick.misc.Tags;
 import com.ashaxolotl.partytrick.spell.blunder.ColorVectorInvalidRangeBlunder;
 import dev.enjarai.trickster.block.SpellColoredBlockEntity;
 import dev.enjarai.trickster.spell.Pattern;
@@ -23,6 +24,8 @@ import java.awt.*;
 import java.util.Optional;
 
 public class ChangeColorTrick extends Trick<ChangeColorTrick> {
+    private static final int manaCost = 40;
+
     public ChangeColorTrick() {
         super(Pattern.of(2,4,6,1,8,6), Signature.of(FragmentType.VECTOR, FragmentType.VECTOR, ChangeColorTrick::changeBlockWithVector, FragmentType.VECTOR));
         overload(Signature.of(FragmentType.VECTOR, FragmentType.ITEM_TYPE.optionalOfArg(), ChangeColorTrick::changeBlockWithDye, FragmentType.VECTOR));
@@ -38,7 +41,7 @@ public class ChangeColorTrick extends Trick<ChangeColorTrick> {
 
         expectLoaded(ctx, blockPos);
         // TODO could block entities be implemented?
-        if (blockState.hasBlockEntity()) {
+        if (blockState.hasBlockEntity() || blockState.isIn(Tags.COLOR_BLOCK_BLACKLIST)) {
             throw new BlockInvalidBlunder(this);
         }
 
@@ -58,7 +61,7 @@ public class ChangeColorTrick extends Trick<ChangeColorTrick> {
             throw new BlockInvalidBlunder(this);
         }
 
-        ctx.useMana(this, 20);
+        ctx.useMana(this, manaCost);
 
         if (newBlockState != blockState) {
             world.setBlockState(blockPos, newBlockState);
@@ -79,6 +82,9 @@ public class ChangeColorTrick extends Trick<ChangeColorTrick> {
         }
 
         ItemStack itemStack = slot.reference(this, ctx);
+        if (itemStack.isIn(Tags.COLOR_ITEM_BLACKLIST)) {
+            throw new ItemInvalidBlunder(this);
+        }
 
         ItemStack newItemStack = ColorHelper.getItemColorVariant(itemStack, dyeColor);
         Item newItem = newItemStack.getItem();
@@ -86,7 +92,7 @@ public class ChangeColorTrick extends Trick<ChangeColorTrick> {
             throw new ItemInvalidBlunder(this);
         }
 
-        ctx.useMana(this, 20 * itemStack.getCount());
+        ctx.useMana(this, manaCost * itemStack.getCount());
         if (itemStack.getItem() != newItem) {
             slot.setStack(newItemStack, this, ctx);
         }
@@ -123,17 +129,17 @@ public class ChangeColorTrick extends Trick<ChangeColorTrick> {
         Entity entity = entityFragment.getEntity(ctx).orElseThrow(() -> new UnknownEntityBlunder(this));
         // wow this code sucks! :thumbsup:
         if (entity instanceof SheepEntity sheep) {
-            ctx.useMana(this, 20);
+            ctx.useMana(this, manaCost);
             // WOLOLO easter egg
             if (sheep.getColor() == DyeColor.BLUE && dyeColor == DyeColor.RED) {
                 sheep.playSound(SoundEvents.ENTITY_EVOKER_PREPARE_WOLOLO);
             }
             sheep.setColor(dyeColor);
         } else if ((entity instanceof WolfEntity wolf) && wolf.isTamed()) {
-            ctx.useMana(this, 20);
+            ctx.useMana(this, manaCost);
             wolf.setCollarColor(dyeColor);
         } else if (entity instanceof CatEntity cat  && cat.isTamed()) {
-            ctx.useMana(this, 20);
+            ctx.useMana(this, manaCost);
             cat.setCollarColor(dyeColor);
         } else {
             throw new InvalidEntityBlunder(this);

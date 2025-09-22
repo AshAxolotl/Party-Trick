@@ -1,0 +1,28 @@
+{
+  "values": [
+    {
+      "id": "#spectrum:colored_logs",
+      "required": false
+    },
+    {
+      "id": "#spectrum:colored_saplings",
+      "required": false
+    },
+    {
+      "id": "#spectrum:pigments",
+      "required": false
+    },
+    {
+      "id": "#pastel:colored_logs",
+      "required": false
+    },
+    {
+      "id": "#pastel:colored_saplings",
+      "required": false
+    },
+    {
+      "id": "#pastel:pigments",
+      "required": false
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 package com.ashaxolotl.partytrick.spell.trick.projectile;
 
+import com.ashaxolotl.partytrick.PartyTrick;
+import com.ashaxolotl.partytrick.misc.Tags;
 import dev.enjarai.trickster.spell.Pattern;
 import dev.enjarai.trickster.spell.SpellContext;
 import dev.enjarai.trickster.spell.blunder.*;
@@ -13,7 +15,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Vec3d;
 
-import static net.minecraft.entity.damage.DamageTypes.SPIT;
 
 public class SummonSpitTrick extends Trick<SummonSpitTrick> {
     public SummonSpitTrick() {
@@ -36,10 +37,10 @@ public class SummonSpitTrick extends Trick<SummonSpitTrick> {
 
     public EntityFragment fromEntity(SpellContext ctx, VectorFragment pos, EntityFragment entityFragment) throws BlunderException {
         var entity = entityFragment.getEntity(ctx).orElseThrow(() -> new UnknownEntityBlunder(this));
-        if (!(entity instanceof LivingEntity) || entity instanceof PlayerEntity) {
+        if (!(entity instanceof LivingEntity) || entity instanceof PlayerEntity || entity.getType().isIn(Tags.SPIT_BLACKLIST)) {
             throw new EntityInvalidBlunder(this);
         }
-        ctx.useMana(this, cost(entity.getPos().distanceTo((Vec3d) pos.vector())));
+        ctx.useMana(this, cost(entity.getPos().distanceTo(new Vec3d(pos.x(), pos.y(), pos.z()))));
 
         var world = ctx.source().getWorld();
         var projectile = EntityType.LLAMA_SPIT.create(world);

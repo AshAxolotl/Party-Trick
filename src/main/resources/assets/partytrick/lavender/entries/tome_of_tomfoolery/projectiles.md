@@ -27,7 +27,7 @@ Extracts spit out of the given mob or caster when available. Distance is the dis
 
 ;;;;;
 
-<|ploy@trickster:templates|trick-id=partytrick:summon_snowball,cost=10G + 4G * dist|>
+<|ploy@trickster:templates|trick-id=partytrick:summon_snowball,cost=10G + 4G * distance|>
 
 Freezes the air at the given position to creating a snowball, returning it.
 

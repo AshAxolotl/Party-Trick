@@ -15,11 +15,11 @@
 
 Color can be used in two ways, either a dye item or vector that represents the red, green and blue with values from 0 to 255.
 
-Added by party trick.
+Added by Party Trick.
 
 ;;;;;
 
-<|ploy@trickster:templates|trick-id=partytrick:change_color,cost=20G * amount|>
+<|ploy@trickster:templates|trick-id=partytrick:change_color,cost=40G * amount|>
 
 Changes the color of the given block, slot or entity.
 
