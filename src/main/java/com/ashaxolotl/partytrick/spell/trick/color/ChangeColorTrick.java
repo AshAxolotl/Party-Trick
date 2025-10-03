@@ -17,6 +17,7 @@ import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.item.*;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.DyeColor;
 
@@ -40,8 +41,7 @@ public class ChangeColorTrick extends Trick<ChangeColorTrick> {
         var blockState = world.getBlockState(blockPos);
 
         expectLoaded(ctx, blockPos);
-        // TODO could block entities be implemented?
-        if (blockState.hasBlockEntity() || blockState.isIn(Tags.COLOR_BLOCK_BLACKLIST)) {
+        if (blockState.isIn(Tags.COLOR_BLOCK_BLACKLIST)) {
             throw new BlockInvalidBlunder(this);
         }
 
@@ -63,8 +63,18 @@ public class ChangeColorTrick extends Trick<ChangeColorTrick> {
 
         ctx.useMana(this, manaCost);
 
+        NbtCompound blockEntityNbt = null;
+        var blockEntity = world.getBlockEntity(blockPos);
+        if (blockEntity != null) {
+            blockEntityNbt = blockEntity.createNbt(world.getRegistryManager());
+        }
+
         if (newBlockState != blockState) {
             world.setBlockState(blockPos, newBlockState);
+        }
+
+        if (blockEntity != null) {
+            world.getBlockEntity(blockPos).read(blockEntityNbt, world.getRegistryManager());
         }
 
         return pos;
