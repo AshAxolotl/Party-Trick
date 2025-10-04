@@ -9,11 +9,19 @@
       "required": false
     },
     {
+      "id": "#spectrum:pigment_blocks",
+      "required": false
+    },
+    {
       "id": "#pastel:colored_logs",
       "required": false
     },
     {
       "id": "#pastel:colored_saplings",
+      "required": false
+    },
+    {
+      "id": "#pastel:pigment_blocks",
       "required": false
     }
   ]
