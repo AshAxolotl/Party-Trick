@@ -38,6 +38,5 @@
 		"trickster": "*"
 	},
 	"suggests": {
-		"another-mod": "*"
 	}
 }
