@@ -3,7 +3,7 @@
 	"id": "party-trick",
 	"version": "${version}",
 	"name": "Party Trick",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Random additions for trickster with a focus on fun",
 	"authors": [
 		"AshAxolotl"
 	],
@@ -38,6 +38,5 @@
 		"trickster": "*"
 	},
 	"suggests": {
-		"another-mod": "*"
 	}
 }
