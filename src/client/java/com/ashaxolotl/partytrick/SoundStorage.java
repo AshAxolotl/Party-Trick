@@ -16,8 +16,6 @@ public class SoundStorage {
             sounds.removeFirst();
         }
         sounds.add(sound.getId());
-
-//        PartyTrick.LOGGER.info(sounds.toString());
     }
 
     public ArrayDeque<Identifier> getSounds() {

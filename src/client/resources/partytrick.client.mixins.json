@@ -3,9 +3,7 @@
   "package": "com.ashaxolotl.partytrick.mixin.client",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "ClientWorldMixin",
-    "SoundManagerMixin",
-    "SoundSystemMixin"
+    "SoundManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
