@@ -6,7 +6,8 @@
     "BlockMixin",
     "ItemMixin",
     "NotACatboyMixin",
-    "PotionItemMixin"
+    "PotionItemMixin",
+    "ServerWorldMixin"
   ],
   "injectors": {
     "defaultRequire": 1

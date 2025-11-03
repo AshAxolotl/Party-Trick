@@ -2,8 +2,11 @@ package com.ashaxolotl.partytrick;
 
 import com.ashaxolotl.partytrick.item.ModItems;
 import com.ashaxolotl.partytrick.misc.ColorHelper;
+import com.ashaxolotl.partytrick.net.ModNetworking;
+import com.ashaxolotl.partytrick.spell.fragment.Fragments;
 import com.ashaxolotl.partytrick.spell.trick.Tricks;
 import dev.enjarai.trickster.Trickster;
+import dev.enjarai.trickster.spell.fragment.FragmentType;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.util.Identifier;
@@ -26,8 +29,11 @@ public class PartyTrick implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
+		Fragments.register();
 		Tricks.register();
+
 		ModItems.register();
+		ModNetworking.register();
 	}
 
 
