@@ -1,38 +1,57 @@
 package com.ashaxolotl.partytrick.spell.trick.sound;
 
-import com.ashaxolotl.partytrick.PartyTrick;
 import com.ashaxolotl.partytrick.spell.fragment.Fragments;
 import com.ashaxolotl.partytrick.spell.fragment.SoundFragment;
-import dev.enjarai.trickster.ModSounds;
 import dev.enjarai.trickster.spell.Pattern;
 import dev.enjarai.trickster.spell.SpellContext;
 import dev.enjarai.trickster.spell.blunder.BlunderException;
-import dev.enjarai.trickster.spell.blunder.InvalidEventBlunder;
+import dev.enjarai.trickster.spell.blunder.InvalidEntityBlunder;
+import dev.enjarai.trickster.spell.blunder.UnknownEntityBlunder;
+import dev.enjarai.trickster.spell.fragment.EntityFragment;
 import dev.enjarai.trickster.spell.fragment.FragmentType;
 import dev.enjarai.trickster.spell.fragment.NumberFragment;
+import dev.enjarai.trickster.spell.fragment.VectorFragment;
 import dev.enjarai.trickster.spell.trick.Trick;
 import dev.enjarai.trickster.spell.type.Signature;
+import net.minecraft.network.packet.s2c.play.PlaySoundS2CPacket;
 import net.minecraft.registry.Registries;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
+
+import java.util.List;
+import java.util.Optional;
 
 public class PlaySoundTrick extends Trick<PlaySoundTrick> {
     public PlaySoundTrick() {
-        super(Pattern.of(0,1,2), Signature.of(Fragments.SOUND, FragmentType.NUMBER, FragmentType.NUMBER, PlaySoundTrick::play, Fragments.SOUND));
+        super(Pattern.of(0,1,2), Signature.of(FragmentType.VECTOR, Fragments.SOUND, FragmentType.NUMBER.optionalOfArg(), FragmentType.NUMBER.optionalOfArg(), FragmentType.ENTITY.variadicOfArg().optionalOfArg(), PlaySoundTrick::play, FragmentType.VECTOR));
     }
 
-    public SoundFragment play(SpellContext ctx, SoundFragment soundFragment, NumberFragment volume, NumberFragment pitch) throws BlunderException {
-        var pos = ctx.source().getPos();
-        ctx.source().getWorld().playSound(
-                null,
-                pos.x,
-                pos.y,
-                pos.z,
-                soundFragment.sound(),
-                SoundCategory.NEUTRAL,
-                (float) volume.number(),
-                (float) pitch.number()
-        );
-        return soundFragment;
+    public VectorFragment play(SpellContext ctx, VectorFragment location, SoundFragment soundFragment, Optional<NumberFragment> optionalVolume, Optional<NumberFragment> optionalPitch, Optional<List<EntityFragment>> targets) throws BlunderException {
+        ctx.useMana(this, 1);
+        float volume = (float) optionalVolume.orElse(new NumberFragment(1)).number();
+        float pitch = (float) optionalPitch.orElse(new NumberFragment(1)).number();
+
+
+        if (targets.isEmpty()) {
+            ctx.source().getWorld().playSound(
+                    null,
+                    location.x(), location.y(), location.z(),
+                    soundFragment.sound(), SoundCategory.NEUTRAL,
+                    volume, pitch
+            );
+        } else {
+            var sound = Registries.SOUND_EVENT.getEntry(soundFragment.sound());
+            targets.get().forEach(t -> {
+                if (t.getEntity(ctx).get() instanceof ServerPlayerEntity serverPlayer) {
+                    serverPlayer.networkHandler.sendPacket(new PlaySoundS2CPacket(
+                            sound, SoundCategory.NEUTRAL,
+                            location.x(), location.y(), location.z(),
+                            volume, pitch,
+                            ctx.source().getWorld().random.nextLong()));
+                }
+            });
+        }
+        return location;
     }
+
 }

@@ -7,7 +7,6 @@ public class ModNetworking {
     public static OwoNetChannel CHANNEL = OwoNetChannel.create(PartyTrick.id("main"));
 
     public static void register() {
-        CHANNEL.registerClientboundDeferred(RequestSoundsPacket.class);
-        CHANNEL.registerServerbound(SoundResponsePacket.class, SoundResponsePacket::handleServer);
+        CHANNEL.registerServerbound(SendSoundsPacket.class, SendSoundsPacket::handleServer);
     }
 }

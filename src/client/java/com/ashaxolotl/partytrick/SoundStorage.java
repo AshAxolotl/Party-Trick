@@ -9,17 +9,17 @@ import java.util.List;
 
 public class SoundStorage {
     public static final SoundStorage INSTANCE = new SoundStorage();
-
-//    private static final int capacity = 6;
-//    private ArrayDeque<Identifier> sounds = new ArrayDeque<>(capacity);
-    private final List<Identifier> sounds = new ArrayList<>();
+    private List<Identifier> sounds = new ArrayList<>();
 
     public void addSound(SoundInstance sound) {
-        sounds.add(sound.getId());
+        var id = sound.getId();
+        if (!sounds.contains(id)) {
+            sounds.add(id);
+        }
     }
 
-    public void reset(List<Identifier> remove) {
-        sounds.clear();
+    public void reset(int oldLength) {
+        sounds = sounds.subList(oldLength, sounds.size());
     }
 
     public List<Identifier> getSounds() {
