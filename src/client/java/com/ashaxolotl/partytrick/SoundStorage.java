@@ -18,8 +18,8 @@ public class SoundStorage {
         }
     }
 
-    public void reset(int oldLength) {
-        sounds = sounds.subList(oldLength, sounds.size());
+    public void reset() {
+        sounds.clear();
     }
 
     public List<Identifier> getSounds() {

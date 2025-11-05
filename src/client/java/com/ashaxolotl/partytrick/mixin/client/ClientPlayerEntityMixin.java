@@ -7,10 +7,13 @@ import com.mojang.authlib.GameProfile;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.List;
 
 @Mixin(ClientPlayerEntity.class)
 public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity{
@@ -18,13 +21,13 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity{
         super(world, profile);
     }
 
-    // Sending a list of sounds the player has heard everything surely is a good idea right
+    // Sending a list of sounds the player has heard every tick surely is a good idea right
     @Inject(method = "tick", at = @At("HEAD"))
     public void sendSoundsPacket(CallbackInfo ci) {
-        var sounds = SoundStorage.INSTANCE.getSounds();
+        List<Identifier> sounds = List.copyOf(SoundStorage.INSTANCE.getSounds());
 //        if (!(sounds.isEmpty())) {
             ModNetworking.CHANNEL.clientHandle().send(new SendSoundsPacket(this.getUuid(), sounds));
-            SoundStorage.INSTANCE.reset(sounds.size());
+            SoundStorage.INSTANCE.reset();
 //        }
     }
 }
