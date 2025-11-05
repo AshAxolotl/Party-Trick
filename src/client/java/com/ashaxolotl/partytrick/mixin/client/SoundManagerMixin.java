@@ -25,7 +25,7 @@ public abstract class SoundManagerMixin {
             at = @At("HEAD")
     )
     private void catchSound(SoundInstance sound, CallbackInfo ci) {
-        SoundStorage.INSTANCE.addSound(sound);
+//        SoundStorage.INSTANCE.addSound(sound);
     }
 
     @Inject(
@@ -33,6 +33,6 @@ public abstract class SoundManagerMixin {
             at = @At("HEAD")
     )
     private void catchSound(SoundInstance sound, int delay, CallbackInfo ci) {
-        SoundStorage.INSTANCE.addSound(sound);
+//        SoundStorage.INSTANCE.addSound(sound);
     }
 }

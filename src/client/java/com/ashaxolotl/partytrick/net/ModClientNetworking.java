@@ -1,5 +1,6 @@
 package com.ashaxolotl.partytrick.net;
 
+import com.ashaxolotl.partytrick.PartyTrick;
 import com.ashaxolotl.partytrick.SoundStorage;
 import io.vavr.collection.Array;
 import net.minecraft.util.Identifier;

@@ -15,6 +15,7 @@ import dev.enjarai.trickster.spell.fragment.EntityFragment;
 import dev.enjarai.trickster.spell.fragment.FragmentType;
 import dev.enjarai.trickster.spell.trick.Trick;
 import dev.enjarai.trickster.spell.type.Signature;
+import io.wispforest.owo.network.OwoNetChannel;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.Optional;
@@ -29,7 +30,7 @@ public class GetSoundTrick extends Trick<GetSoundTrick> {
         var entity = entityFragment.getEntity(ctx).orElseThrow(() -> new UnknownEntityBlunder(this));
 
         if (entity instanceof ServerPlayerEntity player) {
-            var uuid = UUID.randomUUID();
+            var uuid = player.getUuid();
             ModNetworking.CHANNEL.serverHandle(player).send(new RequestSoundsPacket(uuid));
             return new MessageListenerSpellExecutor(ctx.state(), Optional.empty(), Optional.of(new MessageHandlerComponent.Key.Channel(uuid)));
         } else {

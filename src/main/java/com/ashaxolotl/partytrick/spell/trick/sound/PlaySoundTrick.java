@@ -31,7 +31,7 @@ public class PlaySoundTrick extends Trick<PlaySoundTrick> {
                 soundFragment.sound(),
                 SoundCategory.NEUTRAL,
                 (float) volume.number(),
-                (float) volume.number()
+                (float) pitch.number()
         );
         return soundFragment;
     }
