@@ -1,6 +1,6 @@
 package com.ashaxolotl.partytrick.mixin.client;
 
-import com.ashaxolotl.partytrick.SoundStorage;
+import com.ashaxolotl.partytrick.ClientSoundStorage;
 import com.ashaxolotl.partytrick.net.ModNetworking;
 import com.ashaxolotl.partytrick.net.SendSoundsPacket;
 import com.mojang.authlib.GameProfile;
@@ -24,10 +24,10 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity{
     // Sending a list of sounds the player has heard every tick surely is a good idea right
     @Inject(method = "tick", at = @At("HEAD"))
     public void sendSoundsPacket(CallbackInfo ci) {
-        List<Identifier> sounds = List.copyOf(SoundStorage.INSTANCE.getSounds());
+        List<Identifier> sounds = List.copyOf(ClientSoundStorage.INSTANCE.getSounds());
 //        if (!(sounds.isEmpty())) {
             ModNetworking.CHANNEL.clientHandle().send(new SendSoundsPacket(this.getUuid(), sounds));
-            SoundStorage.INSTANCE.reset();
+            ClientSoundStorage.INSTANCE.reset();
 //        }
     }
 }

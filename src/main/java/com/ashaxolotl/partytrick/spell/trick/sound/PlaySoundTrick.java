@@ -42,7 +42,7 @@ public class PlaySoundTrick extends Trick<PlaySoundTrick> {
         } else {
             var sound = Registries.SOUND_EVENT.getEntry(soundFragment.sound());
             targets.get().forEach(t -> {
-                if (t.getEntity(ctx).get() instanceof ServerPlayerEntity serverPlayer) {
+                if (t.getEntity(ctx).orElse(null) instanceof ServerPlayerEntity serverPlayer) {
                     serverPlayer.networkHandler.sendPacket(new PlaySoundS2CPacket(
                             sound, SoundCategory.NEUTRAL,
                             location.x(), location.y(), location.z(),
