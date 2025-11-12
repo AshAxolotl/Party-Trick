@@ -9,7 +9,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
 
-public class ModItems {
+public class PartyItems {
     public static final Item PEPERNOOT = register("pepernoot", new Item(new Item.Settings().food(new FoodComponent.Builder()
             .alwaysEdible()
             .snack()
@@ -22,7 +22,7 @@ public class ModItems {
     }
 
     public static void register() {
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register((itemGroup) -> itemGroup.add(ModItems.PEPERNOOT));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register((itemGroup) -> itemGroup.add(PartyItems.PEPERNOOT));
     }
 
 }

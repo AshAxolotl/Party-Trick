@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "party-trick",
+	"id": "partytrick",
 	"version": "${version}",
 	"name": "Party Trick",
 	"description": "Random additions for trickster with a focus on fun",
@@ -15,6 +15,9 @@
 	"icon": "assets/partytrick/icon.png",
 	"environment": "*",
 	"entrypoints": {
+		"fabric-datagen": [
+			"com.ashaxolotl.partytrick.datagen.PartyTrickDataGenerator"
+		],
 		"main": [
 			"com.ashaxolotl.partytrick.PartyTrick"
 		],

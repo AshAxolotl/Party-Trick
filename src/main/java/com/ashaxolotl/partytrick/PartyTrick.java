@@ -1,19 +1,17 @@
 package com.ashaxolotl.partytrick;
 
-import com.ashaxolotl.partytrick.item.ModItems;
-import com.ashaxolotl.partytrick.misc.ColorHelper;
+import com.ashaxolotl.partytrick.item.PartyItems;
 import com.ashaxolotl.partytrick.net.ModNetworking;
 import com.ashaxolotl.partytrick.spell.fragment.Fragments;
 import com.ashaxolotl.partytrick.spell.trick.Tricks;
-import dev.enjarai.trickster.Trickster;
-import dev.enjarai.trickster.spell.fragment.FragmentType;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.UUID;
 
 public class PartyTrick implements ModInitializer {
 	public static final String MOD_ID = "partytrick";
@@ -32,8 +30,12 @@ public class PartyTrick implements ModInitializer {
 		Fragments.register();
 		Tricks.register();
 
-		ModItems.register();
+		PartyItems.register();
 		ModNetworking.register();
+
+		FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(container -> {
+			ResourceManagerHelper.registerBuiltinResourcePack(id("variant_models"), container, ResourcePackActivationType.ALWAYS_ENABLED);
+		});
 	}
 
 

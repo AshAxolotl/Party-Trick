@@ -1,6 +1,6 @@
 package com.ashaxolotl.partytrick.spell.fragment;
 
-import dev.enjarai.trickster.Trickster;
+import com.ashaxolotl.partytrick.PartyTrick;
 import dev.enjarai.trickster.spell.Fragment;
 import dev.enjarai.trickster.spell.fragment.FragmentType;
 import io.wispforest.endec.StructEndec;
@@ -12,7 +12,7 @@ public class Fragments {
     public static final FragmentType<SoundFragment> SOUND = register("sound", SoundFragment.ENDEC, 1952207);
 
     private static <T extends Fragment> FragmentType<T> register(String name, StructEndec<T> codec, int color) {
-        return Registry.register(FragmentType.REGISTRY, Trickster.id(name), new FragmentType<>(codec, OptionalInt.of(color)));
+        return Registry.register(FragmentType.REGISTRY, PartyTrick.id(name), new FragmentType<>(codec, OptionalInt.of(color)));
     }
 
     public static void register() {
