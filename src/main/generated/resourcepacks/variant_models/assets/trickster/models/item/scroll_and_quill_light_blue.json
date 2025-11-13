@@ -1,0 +1,74 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "trickster:item/scroll_and_quill_light_blue_1",
+      "predicate": {
+        "custom_model_data": 1
+      }
+    },
+    {
+      "model": "trickster:item/scroll_and_quill_light_blue_2",
+      "predicate": {
+        "custom_model_data": 2
+      }
+    },
+    {
+      "model": "trickster:item/scroll_and_quill_light_blue_3",
+      "predicate": {
+        "custom_model_data": 3
+      }
+    },
+    {
+      "model": "trickster:item/scroll_and_quill_light_blue_4",
+      "predicate": {
+        "custom_model_data": 4
+      }
+    },
+    {
+      "model": "trickster:item/scroll_and_quill_light_blue_5",
+      "predicate": {
+        "custom_model_data": 5
+      }
+    },
+    {
+      "model": "trickster:item/scroll_and_quill_light_blue_6",
+      "predicate": {
+        "custom_model_data": 6
+      }
+    },
+    {
+      "model": "trickster:item/scroll_and_quill_light_blue_7",
+      "predicate": {
+        "custom_model_data": 7
+      }
+    },
+    {
+      "model": "trickster:item/scroll_and_quill_light_blue_8",
+      "predicate": {
+        "custom_model_data": 8
+      }
+    },
+    {
+      "model": "trickster:item/scroll_and_quill_light_blue_9",
+      "predicate": {
+        "custom_model_data": 9
+      }
+    },
+    {
+      "model": "trickster:item/scroll_and_quill_light_blue_10",
+      "predicate": {
+        "custom_model_data": 10
+      }
+    },
+    {
+      "model": "trickster:item/scroll_and_quill_light_blue_11",
+      "predicate": {
+        "custom_model_data": 11
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "trickster:item/scroll_and_quill_light_blue"
+  }
+}
