@@ -30,6 +30,12 @@
       "predicate": {
         "custom_model_data": 5
       }
+    },
+    {
+      "model": "trickster:item/wand_6",
+      "predicate": {
+        "custom_model_data": 6
+      }
     }
   ],
   "textures": {

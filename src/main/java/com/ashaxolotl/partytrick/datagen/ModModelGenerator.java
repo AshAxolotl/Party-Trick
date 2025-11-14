@@ -1,36 +1,35 @@
 package com.ashaxolotl.partytrick.datagen;
 
-import com.ashaxolotl.partytrick.PartyTrick;
 import com.ashaxolotl.partytrick.item.PartyItems;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import dev.enjarai.trickster.item.ModItems;
 import io.vavr.Tuple2;
-import io.vavr.Tuple3;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.client.*;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 
-// DATA GEN IS EVIl. It may whisper to you "You wont have to write json" or "You'll save so much time". Do not trust its lies you will get lost in it. Your family and friends will slowly leave you while you scream just one fix and it will all work, just one more tweak, just one more!
+// DATA GEN IS EVIl. It may whisper to you "You won't have to write json" or "You'll save so much time". Do not trust its lies you will get lost in it. Your family and friends will slowly leave you while you scream just one fix, and it will all work, just one more tweak, just one more!
 public class ModModelGenerator extends FabricModelProvider {
     public ModModelGenerator(FabricDataOutput output) {
         super(output);
     }
 
     // Map holding all variants used for generating the models and getting the max amount of variants
-    public final static Map<Item, Tuple2<Model, Integer>> variants = Map.of(
+    public final static Map<Item, Tuple2<Model, Integer>> variants = new HashMap<>(Map.of(
             PartyItems.PEPERNOOT, new Tuple2<>(Models.GENERATED, 1),
-            ModItems.WAND, new Tuple2<>(Models.HANDHELD, 4)
-    );
+            ModItems.WAND, new Tuple2<>(Models.HANDHELD, 5)
+    ));
+    static {
+        Arrays.stream(ModItems.COLORED_SCROLLS_AND_QUILLS).toList().forEach(scrollAndQuillItem -> variants.put(scrollAndQuillItem, new Tuple2<>(Models.GENERATED, 10)));
+    }
 
     public final static Map<Item, Tuple2<Model, Integer>> doNOTdatagenVariantsBecauseILikeMySanity = Map.of(
             ModItems.MIRROR_OF_EVALUATION, new Tuple2<>(Models.GENERATED, 2)
@@ -72,7 +71,7 @@ public class ModModelGenerator extends FabricModelProvider {
         });
     }
 
-    private final JsonObject createVariantsJson(Identifier id, Map<TextureKey, Identifier> textures, int amount, Model model) {
+    private JsonObject createVariantsJson(Identifier id, Map<TextureKey, Identifier> textures, int amount, Model model) {
         JsonObject jsonObject = model.createJson(id, textures);
 
         JsonArray overridesArray = new JsonArray();
