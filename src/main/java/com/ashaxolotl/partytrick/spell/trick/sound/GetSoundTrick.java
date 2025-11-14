@@ -20,7 +20,7 @@ import java.util.List;
 
 public class GetSoundTrick extends Trick<GetSoundTrick> {
     public GetSoundTrick() {
-        super(Pattern.of(3, 4, 5), Signature.of(FragmentType.ENTITY, GetSoundTrick::get, Fragments.SOUND.listOfRet()));
+        super(Pattern.of(1, 2, 5, 8, 7, 6, 4, 1), Signature.of(FragmentType.ENTITY, GetSoundTrick::get, Fragments.SOUND.listOfRet()));
     }
 
     public List<SoundFragment> get(SpellContext ctx, EntityFragment entityFragment) throws BlunderException {

@@ -35,7 +35,7 @@ public class GetColorTrick extends Trick<GetColorTrick> {
         var entity = world.getBlockEntity(blockPos);
         if (entity instanceof SpellColoredBlockEntity blockEntity) { // allows for any SpellColoredBlockEntity. What seems to be only lights by default
             Color color = new Color(blockEntity.getColors()[0]);
-            return Optional.of(Either.left(new VectorFragment(new Vector3d(color.getRed(),color.getGreen(), color.getBlue())))); // TODO this currently doesnt work because of something on tricksters. Im to lazy to fix it here
+            return Optional.of(Either.left(new VectorFragment(new Vector3d(color.getRed(),color.getGreen(), color.getBlue()))));
         }
 
         String colorString = ColorHelper.getDyeColorString(Registries.BLOCK.getId(world.getBlockState(blockPos).getBlock()));

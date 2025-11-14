@@ -4,6 +4,9 @@
   "icon": "minecraft:music_disc_5",
   "category": "trickster:tricks",
   "additional_search_terms": [
+    "Mike's Ingress",
+    "Siren's Ploy",
+    "Ploy of Tismphones"
   ]
 }
 ```
@@ -16,7 +19,7 @@
 
 <|trick@trickster:templates|trick-id=partytrick:get_sound|>
 
-Returns a list of sounds that just started playing for the given player. The output only changing every tick
+Returns a list of sounds that just hit given player's ear drums. The output only changing every tick
 
 ;;;;;
 
@@ -26,6 +29,6 @@ Plays a sound at the given location optionally volume, pitch and players who wil
 
 ;;;;;
 
-<|ploy@trickster:templates|trick-id=partytrick:muffle_sound,cost=TODO|>
+<|ploy@trickster:templates|trick-id=partytrick:muffle_sound,cost=10G|>
 
-TODO muffles sounds
+Changes the mental perception of the volume of the given sounds or all if none provided. By adding the given number to a multiplier

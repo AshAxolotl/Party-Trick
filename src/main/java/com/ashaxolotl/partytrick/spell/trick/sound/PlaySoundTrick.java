@@ -21,7 +21,7 @@ import java.util.Optional;
 
 public class PlaySoundTrick extends Trick<PlaySoundTrick> {
     public PlaySoundTrick() {
-        super(Pattern.of(0,1,2), Signature.of(FragmentType.VECTOR, Fragments.SOUND, FragmentType.NUMBER.optionalOfArg(), FragmentType.NUMBER.optionalOfArg(), FragmentType.ENTITY.variadicOfArg().unpack().optionalOfArg(), PlaySoundTrick::play, FragmentType.VECTOR));
+        super(Pattern.of(2, 1, 4, 7, 6, 4), Signature.of(FragmentType.VECTOR, Fragments.SOUND, FragmentType.NUMBER.optionalOfArg(), FragmentType.NUMBER.optionalOfArg(), FragmentType.ENTITY.variadicOfArg().unpack().optionalOfArg(), PlaySoundTrick::play, FragmentType.VECTOR));
     }
 
     public VectorFragment play(SpellContext ctx, VectorFragment location, SoundFragment soundFragment, Optional<NumberFragment> optionalVolume, Optional<NumberFragment> optionalPitch, Optional<List<EntityFragment>> targets) throws BlunderException {
@@ -34,7 +34,7 @@ public class PlaySoundTrick extends Trick<PlaySoundTrick> {
             ctx.source().getWorld().playSound(
                     null,
                     location.x(), location.y(), location.z(),
-                    soundFragment.sound(), SoundCategory.NEUTRAL,
+                    soundFragment.sound(), SoundCategory.MASTER,
                     volume, pitch
             );
         } else {
@@ -42,7 +42,7 @@ public class PlaySoundTrick extends Trick<PlaySoundTrick> {
             targets.get().forEach(t -> {
                 if (t.getEntity(ctx).orElse(null) instanceof ServerPlayerEntity serverPlayer) {
                     serverPlayer.networkHandler.sendPacket(new PlaySoundS2CPacket(
-                            sound, SoundCategory.NEUTRAL,
+                            sound, SoundCategory.MASTER,
                             location.x(), location.y(), location.z(),
                             volume, pitch,
                             ctx.source().getWorld().random.nextLong()));

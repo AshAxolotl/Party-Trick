@@ -1,9 +1,6 @@
 package com.ashaxolotl.partytrick;
 
-import net.minecraft.client.gui.hud.SubtitlesHud;
 import net.minecraft.client.sound.SoundInstance;
-import net.minecraft.client.sound.SoundInstanceListener;
-import net.minecraft.client.sound.WeightedSoundSet;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 

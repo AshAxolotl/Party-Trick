@@ -23,6 +23,9 @@
 		],
 		"client": [
 			"com.ashaxolotl.partytrick.PartyTrickClient"
+		],
+		"cardinal-components-entity": [
+			"com.ashaxolotl.partytrick.cca.ModEntityComponents"
 		]
 	},
 	"accessWidener" : "partytrick.accesswidener",
@@ -33,6 +36,11 @@
 			"environment": "client"
 		}
 	],
+	"custom": {
+		"cardinal-components": [
+			"partytrick:muffles"
+		]
+	},
 	"depends": {
 		"fabricloader": ">=0.15.0",
 		"minecraft": ">=1.21",
