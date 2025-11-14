@@ -33,9 +33,7 @@ public class PartyTrick implements ModInitializer {
 		PartyItems.register();
 		ModNetworking.register();
 
-		FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(container -> {
-			ResourceManagerHelper.registerBuiltinResourcePack(id("variant_models"), container, ResourcePackActivationType.ALWAYS_ENABLED);
-		});
+		FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(container -> ResourceManagerHelper.registerBuiltinResourcePack(id("variant_models"), container, ResourcePackActivationType.ALWAYS_ENABLED));
 	}
 
 
