@@ -5,6 +5,11 @@ import com.ashaxolotl.partytrick.spell.trick.block.ConjureColoredLightTrick;
 import com.ashaxolotl.partytrick.spell.trick.color.ChangeColorTrick;
 import com.ashaxolotl.partytrick.spell.trick.color.DyeToVectorTrick;
 import com.ashaxolotl.partytrick.spell.trick.color.GetColorTrick;
+import com.ashaxolotl.partytrick.spell.trick.entity.AddBreedingAgeTrick;
+import com.ashaxolotl.partytrick.spell.trick.entity.DismountEntityTrick;
+import com.ashaxolotl.partytrick.spell.trick.entity.query.GetBreedingAgeTrick;
+import com.ashaxolotl.partytrick.spell.trick.entity.RideEntityTrick;
+import com.ashaxolotl.partytrick.spell.trick.entity.query.GetVehicleTrick;
 import com.ashaxolotl.partytrick.spell.trick.misc.PepernotenCreationTrick;
 import com.ashaxolotl.partytrick.spell.trick.misc.SetCustomModelDataTrick;
 import com.ashaxolotl.partytrick.spell.trick.particle.LightParticleTrick;
@@ -19,11 +24,18 @@ import net.minecraft.registry.Registry;
 
 import static dev.enjarai.trickster.spell.trick.Tricks.REGISTRY;
 
-
+@SuppressWarnings("unused")
 public class Tricks {
     // MISC
     public static final PepernotenCreationTrick PEPERNOTEN_CREATION = register("pepernoten_creation", new PepernotenCreationTrick());
     public static final SetCustomModelDataTrick SET_CUSTOM_MODEL_DATA = register("set_custom_model_data", new SetCustomModelDataTrick());
+
+    // ENTITY
+    public static final AddBreedingAgeTrick ADD_BREEDING_AGE = register("add_breeding_age", new AddBreedingAgeTrick());
+    public static final GetBreedingAgeTrick GET_BREEDING_AGE = register("get_breeding_age", new GetBreedingAgeTrick());
+    public static final RideEntityTrick RIDE_ENTITY = register("ride_entity", new RideEntityTrick());
+    public static final DismountEntityTrick DISMOUNT_ENTITY = register("dismount_entity", new DismountEntityTrick());
+    public static final GetVehicleTrick GET_VEHICLE = register("get_vehicle", new GetVehicleTrick());
 
     // SUMMONS
     public static final SummonSnowballTrick SUMMON_SNOWBALL = register("summon_snowball", new SummonSnowballTrick());
@@ -42,7 +54,7 @@ public class Tricks {
     public static final PlaySoundTrick PLAY_SOUND = register("play_sound", new PlaySoundTrick());
     public static final MuffleSoundTrick MUFFLE_SOUND = register("muffle_sound", new MuffleSoundTrick());
 
-    public static <T extends Trick<T>> T register(String path, T trick) {
+    public static <T extends Trick<?>> T register(String path, T trick) {
         return Registry.register(REGISTRY, PartyTrick.id(path), trick);
     }
 
