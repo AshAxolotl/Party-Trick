@@ -1,12 +1,12 @@
 package com.ashaxolotl.partytrick.spell.trick.misc;
 
-import com.ashaxolotl.partytrick.PartyTrick;
 import com.ashaxolotl.partytrick.datagen.ModModelGenerator;
 import dev.enjarai.trickster.spell.Pattern;
 import dev.enjarai.trickster.spell.SpellContext;
 import dev.enjarai.trickster.spell.blunder.BlunderException;
 import dev.enjarai.trickster.spell.blunder.ItemInvalidBlunder;
 import dev.enjarai.trickster.spell.blunder.MissingItemBlunder;
+import dev.enjarai.trickster.spell.blunder.NoPlayerBlunder;
 import dev.enjarai.trickster.spell.fragment.FragmentType;
 import dev.enjarai.trickster.spell.fragment.NumberFragment;
 import dev.enjarai.trickster.spell.fragment.SlotFragment;
@@ -20,10 +20,11 @@ import java.util.Optional;
 
 public class SetCustomModelDataTrick extends Trick<SetCustomModelDataTrick> {
     public SetCustomModelDataTrick() {
-        super(Pattern.of(6, 4, 2, 5, 4, 3, 0, 4, 8), Signature.of(FragmentType.SLOT, FragmentType.NUMBER.optionalOfArg(), SetCustomModelDataTrick::run, FragmentType.SLOT));
+        super(Pattern.of(6, 4, 2, 5, 4, 3, 0, 4, 8), Signature.of(FragmentType.SLOT.optionalOfArg(), FragmentType.NUMBER.optionalOfArg(), SetCustomModelDataTrick::run, FragmentType.SLOT));
     }
 
-    public SlotFragment run(SpellContext ctx, SlotFragment slot, Optional<NumberFragment> number) throws BlunderException {
+    public SlotFragment run(SpellContext ctx, Optional<SlotFragment> optionalSlot, Optional<NumberFragment> number) throws BlunderException {
+        var slot = optionalSlot.or(() -> ctx.source().getOtherHandSlot()).orElseThrow(() -> new NoPlayerBlunder(this));
         var stack = slot.reference(this, ctx);
         if (stack.isEmpty()) {
             throw new MissingItemBlunder(this);
