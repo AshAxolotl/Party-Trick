@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public class GetVehicleTrick extends AbstractEntityQueryTrick<Entity, Optional<EntityFragment>> {
     public GetVehicleTrick() {
-        super(Pattern.of(3, 4, 5, 0), Entity.class, FragmentType.ENTITY.optionalOfRet());
+        super(Pattern.of(7, 8, 4, 3, 6, 8, 5, 4), Entity.class, FragmentType.ENTITY.optionalOfRet());
     }
 
     @Override

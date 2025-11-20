@@ -20,7 +20,7 @@ public class AddBreedingAgeTrick extends Trick<AddBreedingAgeTrick> {
     );
 
     public AddBreedingAgeTrick() {
-        super(Pattern.of(0, 1, 2, 5), Signature.of(FragmentType.ENTITY, FragmentType.NUMBER, AddBreedingAgeTrick::run, FragmentType.ENTITY));
+        super(Pattern.of(1, 5, 2, 1, 8, 4, 3, 0, 6, 3, 1), Signature.of(FragmentType.ENTITY, FragmentType.NUMBER, AddBreedingAgeTrick::run, FragmentType.ENTITY));
     }
 
     public EntityFragment run(SpellContext ctx, EntityFragment entityFragment, NumberFragment amount) {

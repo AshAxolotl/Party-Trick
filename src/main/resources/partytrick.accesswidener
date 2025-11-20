@@ -1,4 +1,7 @@
 accessWidener v2 named
 
+accessible method net/minecraft/entity/Entity canAddPassenger (Lnet/minecraft/entity/Entity;)Z
+accessible method net/minecraft/entity/Entity canStartRiding (Lnet/minecraft/entity/Entity;)Z
+
 accessible method net/minecraft/entity/passive/WolfEntity setCollarColor (Lnet/minecraft/util/DyeColor;)V
 accessible method net/minecraft/entity/passive/CatEntity setCollarColor (Lnet/minecraft/util/DyeColor;)V

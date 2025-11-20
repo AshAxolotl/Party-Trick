@@ -10,7 +10,7 @@ import net.minecraft.entity.passive.PassiveEntity;
 
 public class GetBreedingAgeTrick extends AbstractEntityQueryTrick<PassiveEntity, NumberFragment> {
     public GetBreedingAgeTrick() {
-        super(Pattern.of(3, 4, 5), PassiveEntity.class, FragmentType.NUMBER);
+        super(Pattern.of(3, 0, 1, 2, 5, 1, 8, 4, 3, 6, 0), PassiveEntity.class, FragmentType.NUMBER);
     }
 
     @Override

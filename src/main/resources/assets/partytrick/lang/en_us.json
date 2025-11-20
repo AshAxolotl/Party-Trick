@@ -15,5 +15,10 @@
   "trickster.trick.partytrick.dye_to_vector": "Designer's Distortion",
   "trickster.trick.partytrick.get_sound": "Mike's Ingress",
   "trickster.trick.partytrick.play_sound": "Siren's Ploy",
-  "trickster.trick.partytrick.muffle_sound": "Ploy of Tismphones"
+  "trickster.trick.partytrick.muffle_sound": "Ploy of Tismphones",
+  "trickster.trick.partytrick.get_vehicle": "Partner Ingress",
+  "trickster.trick.partytrick.ride_entity": "Passion Ploy",
+  "trickster.trick.partytrick.dismount_entity": "Ploy of Descend",
+  "trickster.trick.partytrick.get_breeding_age": "Memento’s Ingress",
+  "trickster.trick.partytrick.add_breeding_age": "Temporal Ploy"
 }
