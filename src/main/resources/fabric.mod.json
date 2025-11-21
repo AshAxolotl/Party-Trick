@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "party-trick",
+	"id": "partytrick",
 	"version": "${version}",
 	"name": "Party Trick",
 	"description": "Random additions for trickster with a focus on fun",
@@ -15,11 +15,17 @@
 	"icon": "assets/partytrick/icon.png",
 	"environment": "*",
 	"entrypoints": {
+		"fabric-datagen": [
+			"com.ashaxolotl.partytrick.datagen.PartyTrickDataGenerator"
+		],
 		"main": [
 			"com.ashaxolotl.partytrick.PartyTrick"
 		],
 		"client": [
 			"com.ashaxolotl.partytrick.PartyTrickClient"
+		],
+		"cardinal-components-entity": [
+			"com.ashaxolotl.partytrick.cca.ModEntityComponents"
 		]
 	},
 	"accessWidener" : "partytrick.accesswidener",
@@ -30,9 +36,14 @@
 			"environment": "client"
 		}
 	],
+	"custom": {
+		"cardinal-components": [
+			"partytrick:muffles"
+		]
+	},
 	"depends": {
-		"fabricloader": ">=0.16.0",
-		"minecraft": "~1.21.1",
+		"fabricloader": ">=0.15.0",
+		"minecraft": ">=1.21",
 		"java": ">=21",
 		"fabric-api": "*",
 		"trickster": "*"

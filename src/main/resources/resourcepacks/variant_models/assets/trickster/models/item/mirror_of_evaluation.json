@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "trickster:item/mirror_of_evaluation"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [0, 0, 45],
+      "scale": [0.6, 0.6, 0.6],
+      "translation": [0, 4, 0]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [0, 0, -45],
+      "scale": [0.6, 0.6, 0.6],
+      "translation": [0, 4, 0]
+    }
+  },
+  "overrides": [
+    {
+      "model": "trickster:item/mirror_of_evaluation_1",
+      "predicate": {
+        "custom_model_data": 1
+      }
+    },
+    {
+      "model": "trickster:item/mirror_of_evaluation_2",
+      "predicate": {
+        "custom_model_data": 2
+      }
+    },
+    {
+      "model": "trickster:item/mirror_of_evaluation_3",
+      "predicate": {
+        "custom_model_data": 3
+      }
+    }
+  ]
+}

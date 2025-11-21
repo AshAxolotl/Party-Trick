@@ -1,6 +1,6 @@
 package com.ashaxolotl.partytrick.spell.trick.misc;
 
-import com.ashaxolotl.partytrick.item.ModItems;
+import com.ashaxolotl.partytrick.item.PartyItems;
 import dev.enjarai.trickster.spell.Pattern;
 import dev.enjarai.trickster.spell.SpellContext;
 import dev.enjarai.trickster.spell.blunder.BlunderException;
@@ -44,7 +44,7 @@ public class PepernotenCreationTrick extends Trick<PepernotenCreationTrick> {
 
         try {
             ctx.useMana(this, 10);
-            ctx.source().offerOrDropItem(ModItems.PEPERNOOT.getDefaultStack());
+            ctx.source().offerOrDropItem(PartyItems.PEPERNOOT.getDefaultStack());
 
             return VoidFragment.INSTANCE;
         } catch (Exception e) {

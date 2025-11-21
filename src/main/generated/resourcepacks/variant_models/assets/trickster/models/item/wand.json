@@ -1,0 +1,44 @@
+{
+  "parent": "minecraft:item/handheld",
+  "overrides": [
+    {
+      "model": "trickster:item/wand_1",
+      "predicate": {
+        "custom_model_data": 1
+      }
+    },
+    {
+      "model": "trickster:item/wand_2",
+      "predicate": {
+        "custom_model_data": 2
+      }
+    },
+    {
+      "model": "trickster:item/wand_3",
+      "predicate": {
+        "custom_model_data": 3
+      }
+    },
+    {
+      "model": "trickster:item/wand_4",
+      "predicate": {
+        "custom_model_data": 4
+      }
+    },
+    {
+      "model": "trickster:item/wand_5",
+      "predicate": {
+        "custom_model_data": 5
+      }
+    },
+    {
+      "model": "trickster:item/wand_6",
+      "predicate": {
+        "custom_model_data": 6
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "trickster:item/wand"
+  }
+}

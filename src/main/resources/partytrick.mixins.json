@@ -4,9 +4,11 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "BlockMixin",
+    "EntityMixin",
     "ItemMixin",
     "NotACatboyMixin",
-    "PotionItemMixin"
+    "PotionItemMixin",
+    "ServerPlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
