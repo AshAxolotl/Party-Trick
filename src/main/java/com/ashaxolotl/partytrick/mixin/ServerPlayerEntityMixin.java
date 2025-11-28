@@ -1,5 +1,6 @@
 package com.ashaxolotl.partytrick.mixin;
 
+import dev.enjarai.trickster.Trickster;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,9 +19,9 @@ public class ServerPlayerEntityMixin {
     // TODO TEST THIS
     @Inject(method = "onDisconnect", at = @At(value = "HEAD"))
     private void fixDisconnectingWhileRidingPlayersCausingIssues(CallbackInfo ci) {
-        var vehicle = self.getVehicle();
+        var vehicle = self.getRootVehicle();
         if (vehicle != null) {
-            if (vehicle.isPlayer()) {
+            if (vehicle.isPlayer() || vehicle.getPlayerPassengers() > 1) {
                 self.stopRiding();
             }
         }
