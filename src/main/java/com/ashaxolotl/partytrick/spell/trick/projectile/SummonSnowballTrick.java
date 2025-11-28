@@ -23,6 +23,8 @@ public class SummonSnowballTrick extends Trick<SummonSnowballTrick> {
         var projectile = EntityType.SNOWBALL.create(world);
         projectile.setPos(pos.x(), pos.y(), pos.z());
 
+        ctx.source().getPlayer().ifPresent(projectile::setOwner);
+
         world.spawnEntity(projectile);
         return EntityFragment.from(projectile);
     }
