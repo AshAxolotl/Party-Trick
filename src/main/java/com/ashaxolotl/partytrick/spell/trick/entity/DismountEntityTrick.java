@@ -24,6 +24,7 @@ public class DismountEntityTrick extends Trick<DismountEntityTrick> {
 
         ctx.useMana(this, (float) Math.pow(entity.distanceTo(vehicle), 2));
         entity.stopRiding();
+        entity.setVelocity(vehicle.getVelocity());
 
         return entityFragment;
     }
