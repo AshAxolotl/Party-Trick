@@ -29,7 +29,7 @@ public class SummonWindChargeTrick extends Trick<SummonWindChargeTrick> {
 
             var projectile = EntityType.WIND_CHARGE.create(world);
             projectile.setPos(pos.x(), pos.y(), pos.z());
-
+            ctx.source().getPlayer().ifPresent(projectile::setOwner);
             world.spawnEntity(projectile);
             return EntityFragment.from(projectile);
         } catch (Throwable err) {
