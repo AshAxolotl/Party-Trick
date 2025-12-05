@@ -6,9 +6,11 @@
     "BlockMixin",
     "EntityMixin",
     "ItemMixin",
+    "LeashSoundMixin",
     "NotACatboyMixin",
     "PotionItemMixin",
-    "ServerPlayerEntityMixin"
+    "ServerPlayerEntityMixin",
+    "accessor.CasterComponentAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

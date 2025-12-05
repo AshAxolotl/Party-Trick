@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "trickster:item/leash_1",
+      "predicate": {
+        "custom_model_data": 1
+      }
+    },
+    {
+      "model": "trickster:item/leash_2",
+      "predicate": {
+        "custom_model_data": 2
+      }
+    },
+    {
+      "model": "trickster:item/leash_3",
+      "predicate": {
+        "custom_model_data": 3
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "trickster:item/leash"
+  }
+}

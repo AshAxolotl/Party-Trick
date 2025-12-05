@@ -25,7 +25,8 @@ public class ModModelGenerator extends FabricModelProvider {
     // Map holding all variants used for generating the models and getting the max amount of variants
     public final static Map<Item, Tuple2<Model, Integer>> variants = new HashMap<>(Map.of(
             PartyItems.PEPERNOOT, new Tuple2<>(Models.GENERATED, 1),
-            ModItems.WAND, new Tuple2<>(Models.HANDHELD, 5)
+            ModItems.WAND, new Tuple2<>(Models.HANDHELD, 5),
+            ModItems.LEASH, new Tuple2<>(Models.GENERATED, 2)
     ));
     static {
         Arrays.stream(ModItems.COLORED_SCROLLS_AND_QUILLS).toList().forEach(scrollAndQuillItem -> variants.put(scrollAndQuillItem, new Tuple2<>(Models.GENERATED, 10)));
