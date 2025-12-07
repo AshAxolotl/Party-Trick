@@ -26,15 +26,12 @@ public class ModModelGenerator extends FabricModelProvider {
     public final static Map<Item, Tuple2<Model, Integer>> variants = new HashMap<>(Map.of(
             PartyItems.PEPERNOOT, new Tuple2<>(Models.GENERATED, 1),
             ModItems.WAND, new Tuple2<>(Models.HANDHELD, 5),
-            ModItems.LEASH, new Tuple2<>(Models.GENERATED, 2)
+            ModItems.LEASH, new Tuple2<>(Models.GENERATED, 2),
+            ModItems.MIRROR_OF_EVALUATION, new Tuple2<>(Models.GENERATED, 2)
     ));
     static {
         Arrays.stream(ModItems.COLORED_SCROLLS_AND_QUILLS).toList().forEach(scrollAndQuillItem -> variants.put(scrollAndQuillItem, new Tuple2<>(Models.GENERATED, 10)));
     }
-
-    public final static Map<Item, Tuple2<Model, Integer>> doNOTdatagenVariantsBecauseILikeMySanity = Map.of(
-            ModItems.MIRROR_OF_EVALUATION, new Tuple2<>(Models.GENERATED, 2)
-    );
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
