@@ -33,9 +33,6 @@ public class SetCustomModelDataTrick extends Trick<SetCustomModelDataTrick> {
         if (number.isEmpty()) {
             var maxVariants = ModModelGenerator.variants.get(stack.getItem());
             if (maxVariants == null) {
-                maxVariants = ModModelGenerator.doNOTdatagenVariantsBecauseILikeMySanity.get(stack.getItem());
-            }
-            if (maxVariants == null) {
                 throw new ItemInvalidBlunder(this);
             }
             ctx.useMana(this, 1);
