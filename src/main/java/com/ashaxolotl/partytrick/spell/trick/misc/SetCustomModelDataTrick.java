@@ -1,6 +1,6 @@
 package com.ashaxolotl.partytrick.spell.trick.misc;
 
-import com.ashaxolotl.partytrick.datagen.ModModelGenerator;
+import com.ashaxolotl.partytrick.datagen.PartyModelGenerator;
 import dev.enjarai.trickster.spell.Pattern;
 import dev.enjarai.trickster.spell.SpellContext;
 import dev.enjarai.trickster.spell.blunder.BlunderException;
@@ -31,7 +31,7 @@ public class SetCustomModelDataTrick extends Trick<SetCustomModelDataTrick> {
         }
 
         if (number.isEmpty()) {
-            var maxVariants = ModModelGenerator.variants.get(stack.getItem());
+            var maxVariants = PartyModelGenerator.variants.get(stack.getItem());
             if (maxVariants == null) {
                 throw new ItemInvalidBlunder(this);
             }

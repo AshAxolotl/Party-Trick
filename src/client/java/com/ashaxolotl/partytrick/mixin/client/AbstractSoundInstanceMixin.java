@@ -1,6 +1,6 @@
 package com.ashaxolotl.partytrick.mixin.client;
 
-import com.ashaxolotl.partytrick.cca.ModEntityComponents;
+import com.ashaxolotl.partytrick.cca.PartyEntityComponents;
 import com.ashaxolotl.partytrick.cca.MufflesComponent;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.sound.AbstractSoundInstance;
@@ -25,7 +25,7 @@ public class AbstractSoundInstanceMixin {
             var player = MinecraftClient.getInstance().player;
             if (player != null) {
                 double mod = 1;
-                for (MufflesComponent.Muffle muffle : player.getComponent(ModEntityComponents.MUFFLES).getMuffles()) {
+                for (MufflesComponent.Muffle muffle : player.getComponent(PartyEntityComponents.MUFFLES).getMuffles()) {
                     if (muffle.sounds.isEmpty()) {
                         mod += muffle.amount;
                     } else if (muffle.sounds.get().contains(id)) {

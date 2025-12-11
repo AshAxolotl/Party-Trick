@@ -25,7 +25,7 @@
 			"com.ashaxolotl.partytrick.PartyTrickClient"
 		],
 		"cardinal-components-entity": [
-			"com.ashaxolotl.partytrick.cca.ModEntityComponents"
+          "com.ashaxolotl.partytrick.cca.PartyEntityComponents"
 		]
 	},
 	"accessWidener" : "partytrick.accesswidener",

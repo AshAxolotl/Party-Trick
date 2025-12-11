@@ -5,7 +5,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvent;
 
-public class ModSounds {
+public class PartySounds {
     public static final SoundEvent CLICK = register("click");
 
     private static SoundEvent register(String path) {

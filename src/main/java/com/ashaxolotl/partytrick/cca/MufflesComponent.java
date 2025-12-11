@@ -43,7 +43,7 @@ public class MufflesComponent implements ServerTickingComponent, AutoSyncedCompo
                 entry.age++;
             }
         }
-        ModEntityComponents.MUFFLES.sync(player);
+        PartyEntityComponents.MUFFLES.sync(player);
     }
 
     public List<Muffle> getMuffles() {

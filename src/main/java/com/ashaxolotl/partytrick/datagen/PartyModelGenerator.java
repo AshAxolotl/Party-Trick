@@ -17,8 +17,8 @@ import java.util.Map;
 
 
 // DATA GEN IS EVIl. It may whisper to you "You won't have to write json" or "You'll save so much time". Do not trust its lies you will get lost in it. Your family and friends will slowly leave you while you scream just one fix, and it will all work, just one more tweak, just one more!
-public class ModModelGenerator extends FabricModelProvider {
-    public ModModelGenerator(FabricDataOutput output) {
+public class PartyModelGenerator extends FabricModelProvider {
+    public PartyModelGenerator(FabricDataOutput output) {
         super(output);
     }
 

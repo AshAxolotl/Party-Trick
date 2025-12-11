@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 
-public class Tags {
+public class PartyTags {
     public static final TagKey<Block> COLOR_BLOCK_BLACKLIST = block("color_block_blacklist"); // blacklisting form block coloring
     public static final TagKey<Item> COLOR_ITEM_BLACKLIST = item("color_item_blacklist"); // blacklisting form item coloring
     public static final TagKey<EntityType<?>> SPIT_BLACKLIST = entity("spit_blacklist"); // Mobs that cannot be used for spit

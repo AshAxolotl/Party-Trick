@@ -1,7 +1,7 @@
 package com.ashaxolotl.partytrick.mixin.client;
 
 import com.ashaxolotl.partytrick.ClientSoundStorage;
-import com.ashaxolotl.partytrick.net.ModNetworking;
+import com.ashaxolotl.partytrick.net.PartyNetworking;
 import com.ashaxolotl.partytrick.net.SendSoundsPacket;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
@@ -26,7 +26,7 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity{
     public void sendSoundsPacket(CallbackInfo ci) {
         List<Identifier> sounds = List.copyOf(ClientSoundStorage.INSTANCE.getSounds());
 //        if (!(sounds.isEmpty())) {
-            ModNetworking.CHANNEL.clientHandle().send(new SendSoundsPacket(this.getUuid(), sounds));
+            PartyNetworking.CHANNEL.clientHandle().send(new SendSoundsPacket(this.getUuid(), sounds));
             ClientSoundStorage.INSTANCE.reset();
 //        }
     }

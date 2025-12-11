@@ -1,6 +1,6 @@
 package com.ashaxolotl.partytrick.spell.trick.sound;
 
-import com.ashaxolotl.partytrick.cca.ModEntityComponents;
+import com.ashaxolotl.partytrick.cca.PartyEntityComponents;
 import com.ashaxolotl.partytrick.spell.fragment.Fragments;
 import com.ashaxolotl.partytrick.spell.fragment.SoundFragment;
 import dev.enjarai.trickster.spell.Pattern;
@@ -31,11 +31,11 @@ public class MuffleSoundTrick extends Trick<MuffleSoundTrick> {
             ctx.useMana(this, 10);
 
             if (sounds.isEmpty()) {
-                serverPlayer.getComponent(ModEntityComponents.MUFFLES).addMuffle(Optional.empty(), amount.number());
+                serverPlayer.getComponent(PartyEntityComponents.MUFFLES).addMuffle(Optional.empty(), amount.number());
             } else {
                 List<Identifier> list = new ArrayList<>();
                 sounds.get().forEach(s -> list.add(s.sound().getId()));
-                serverPlayer.getComponent(ModEntityComponents.MUFFLES).addMuffle(Optional.of(list), amount.number());
+                serverPlayer.getComponent(PartyEntityComponents.MUFFLES).addMuffle(Optional.of(list), amount.number());
             }
             return entityFragment;
         } else {

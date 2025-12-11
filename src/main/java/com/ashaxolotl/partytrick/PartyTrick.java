@@ -1,8 +1,9 @@
 package com.ashaxolotl.partytrick;
 
+import com.ashaxolotl.partytrick.entity.PartyEntities;
 import com.ashaxolotl.partytrick.item.PartyItems;
-import com.ashaxolotl.partytrick.misc.ModSounds;
-import com.ashaxolotl.partytrick.net.ModNetworking;
+import com.ashaxolotl.partytrick.misc.PartySounds;
+import com.ashaxolotl.partytrick.net.PartyNetworking;
 import com.ashaxolotl.partytrick.spell.fragment.Fragments;
 import com.ashaxolotl.partytrick.spell.trick.Tricks;
 import net.fabricmc.api.ModInitializer;
@@ -32,8 +33,9 @@ public class PartyTrick implements ModInitializer {
 		Tricks.register();
 
 		PartyItems.register();
-		ModNetworking.register();
-		ModSounds.register();
+		PartyEntities.register();
+		PartyNetworking.register();
+		PartySounds.register();
 
 		FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(container -> ResourceManagerHelper.registerBuiltinResourcePack(id("variant_models"), container, ResourcePackActivationType.ALWAYS_ENABLED));
 	}

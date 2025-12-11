@@ -1,6 +1,6 @@
 package com.ashaxolotl.partytrick.spell.trick.entity;
 
-import com.ashaxolotl.partytrick.misc.Tags;
+import com.ashaxolotl.partytrick.misc.PartyTags;
 import dev.enjarai.trickster.spell.Pattern;
 import dev.enjarai.trickster.spell.SpellContext;
 import dev.enjarai.trickster.spell.blunder.InvalidEntityBlunder;
@@ -21,7 +21,7 @@ public class RideEntityTrick extends Trick<RideEntityTrick> {
         var rider = riderFragment.getEntity(ctx).orElseThrow(() -> new UnknownEntityBlunder(this));
         var mount = mountFragment.getEntity(ctx).orElseThrow(() -> new UnknownEntityBlunder(this));
 
-        if (!(rider.canStartRiding(mount) && mount.canAddPassenger(rider)) || mount.getType().isIn(Tags.MOUNT_BLACKLIST) || rider.getType().isIn(Tags.RIDER_BLACKLIST)) {
+        if (!(rider.canStartRiding(mount) && mount.canAddPassenger(rider)) || mount.getType().isIn(PartyTags.MOUNT_BLACKLIST) || rider.getType().isIn(PartyTags.RIDER_BLACKLIST)) {
             throw new InvalidEntityBlunder(this);
         }
 

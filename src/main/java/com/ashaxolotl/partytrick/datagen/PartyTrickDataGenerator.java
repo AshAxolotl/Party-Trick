@@ -8,6 +8,6 @@ public class PartyTrickDataGenerator implements DataGeneratorEntrypoint {
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
         // Needs to be a resourcepack to be able to override trickster
-        fabricDataGenerator.createBuiltinResourcePack(PartyTrick.id("variant_models")).addProvider(ModModelGenerator::new);
+        fabricDataGenerator.createBuiltinResourcePack(PartyTrick.id("variant_models")).addProvider(PartyModelGenerator::new);
     }
 }

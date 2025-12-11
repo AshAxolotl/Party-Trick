@@ -1,6 +1,6 @@
 package com.ashaxolotl.partytrick.spell.trick.entity;
 
-import com.ashaxolotl.partytrick.misc.Tags;
+import com.ashaxolotl.partytrick.misc.PartyTags;
 import dev.enjarai.trickster.spell.Pattern;
 import dev.enjarai.trickster.spell.SpellContext;
 import dev.enjarai.trickster.spell.blunder.InvalidEntityBlunder;
@@ -18,7 +18,7 @@ public class DismountEntityTrick extends Trick<DismountEntityTrick> {
     public EntityFragment run(SpellContext ctx, EntityFragment entityFragment) {
         var entity = entityFragment.getEntity(ctx).orElseThrow(() -> new UnknownEntityBlunder(this));
         var vehicle = entity.getVehicle();
-        if (vehicle == null || vehicle.getType().isIn(Tags.DISMOUNT_BLACKLIST)) {
+        if (vehicle == null || vehicle.getType().isIn(PartyTags.DISMOUNT_BLACKLIST)) {
             throw new InvalidEntityBlunder(this);
         }
 

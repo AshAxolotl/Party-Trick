@@ -1,7 +1,7 @@
 package com.ashaxolotl.partytrick.spell.trick.color;
 
 import com.ashaxolotl.partytrick.misc.ColorHelper;
-import com.ashaxolotl.partytrick.misc.Tags;
+import com.ashaxolotl.partytrick.misc.PartyTags;
 import com.ashaxolotl.partytrick.spell.blunder.ColorVectorInvalidRangeBlunder;
 import dev.enjarai.trickster.block.SpellColoredBlockEntity;
 import dev.enjarai.trickster.spell.Pattern;
@@ -41,7 +41,7 @@ public class ChangeColorTrick extends Trick<ChangeColorTrick> {
         var blockState = world.getBlockState(blockPos);
 
         expectLoaded(ctx, blockPos);
-        if (blockState.isIn(Tags.COLOR_BLOCK_BLACKLIST)) {
+        if (blockState.isIn(PartyTags.COLOR_BLOCK_BLACKLIST)) {
             throw new BlockInvalidBlunder(this);
         }
 
@@ -92,7 +92,7 @@ public class ChangeColorTrick extends Trick<ChangeColorTrick> {
         }
 
         ItemStack itemStack = slot.reference(this, ctx);
-        if (itemStack.isIn(Tags.COLOR_ITEM_BLACKLIST)) {
+        if (itemStack.isIn(PartyTags.COLOR_ITEM_BLACKLIST)) {
             throw new ItemInvalidBlunder(this);
         }
 

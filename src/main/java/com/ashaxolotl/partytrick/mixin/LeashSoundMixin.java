@@ -1,7 +1,7 @@
 package com.ashaxolotl.partytrick.mixin;
 
 import com.ashaxolotl.partytrick.PartyTrick;
-import com.ashaxolotl.partytrick.misc.ModSounds;
+import com.ashaxolotl.partytrick.misc.PartySounds;
 import com.ashaxolotl.partytrick.mixin.accessor.CasterComponentAccessor;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -20,7 +20,6 @@ import net.minecraft.sound.SoundEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +33,7 @@ public class LeashSoundMixin {
     private void sound(CasterComponent instance, float pitchRange, float startPitch, Operation<Void> original, @Local ItemStack stack) {
         int variant = stack.getOrDefault(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(0)).value();
         if (variant == 1) {
-            playSound(((CasterComponentAccessor) instance).trickster$getPlayer(), ModSounds.CLICK, 1.5f, 1, 0);
+            playSound(((CasterComponentAccessor) instance).trickster$getPlayer(), PartySounds.CLICK, 1.5f, 1, 0);
         } else {
             original.call(instance, pitchRange, startPitch);
         }
@@ -44,7 +43,7 @@ public class LeashSoundMixin {
     private Optional<Integer> cast(CasterComponent instance, SpellPart spell, List<Fragment> arguments, Operation<Optional<Integer>> original, @Local ItemStack stack) {
         int variant = stack.getOrDefault(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(0)).value();
         if (variant == 1) {
-            playSound(((CasterComponentAccessor) instance).trickster$getPlayer(), ModSounds.CLICK, 1.5f, 1, 0);
+            playSound(((CasterComponentAccessor) instance).trickster$getPlayer(), PartySounds.CLICK, 1.5f, 1, 0);
             return ((CasterComponentAccessor) instance).trickster$getCollarExecutionManager().queue(spell, arguments);
         } else {
             return original.call(instance, spell, arguments);

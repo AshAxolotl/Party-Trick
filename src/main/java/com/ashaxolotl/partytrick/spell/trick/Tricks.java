@@ -5,6 +5,9 @@ import com.ashaxolotl.partytrick.spell.trick.block.ConjureColoredLightTrick;
 import com.ashaxolotl.partytrick.spell.trick.color.ChangeColorTrick;
 import com.ashaxolotl.partytrick.spell.trick.color.DyeToVectorTrick;
 import com.ashaxolotl.partytrick.spell.trick.color.GetColorTrick;
+import com.ashaxolotl.partytrick.spell.trick.displayentity.DeleteDisplayEntityTrick;
+import com.ashaxolotl.partytrick.spell.trick.displayentity.MoveDisplayEntityTrick;
+import com.ashaxolotl.partytrick.spell.trick.displayentity.SummonDisplayEntityTrick;
 import com.ashaxolotl.partytrick.spell.trick.entity.AddBreedingAgeTrick;
 import com.ashaxolotl.partytrick.spell.trick.entity.DismountEntityTrick;
 import com.ashaxolotl.partytrick.spell.trick.entity.query.GetBreedingAgeTrick;
@@ -53,6 +56,11 @@ public class Tricks {
     public static final GetSoundTrick GET_SOUND = register("get_sound", new GetSoundTrick());
     public static final PlaySoundTrick PLAY_SOUND = register("play_sound", new PlaySoundTrick());
     public static final MuffleSoundTrick MUFFLE_SOUND = register("muffle_sound", new MuffleSoundTrick());
+
+    // DISPLAY
+    public static final SummonDisplayEntityTrick SUMMON_DISPLAY_ENTITY = register("summon_display_entity", new SummonDisplayEntityTrick());
+    public static final DeleteDisplayEntityTrick DELETE_DISPLAY_ENTITY = register("delete_display_entity", new DeleteDisplayEntityTrick());
+    public static final MoveDisplayEntityTrick MOVE_DISPLAY_ENTITY = register("move_display_entity", new MoveDisplayEntityTrick());
 
     public static <T extends Trick<?>> T register(String path, T trick) {
         return Registry.register(REGISTRY, PartyTrick.id(path), trick);

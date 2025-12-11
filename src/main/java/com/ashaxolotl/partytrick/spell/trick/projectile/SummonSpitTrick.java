@@ -1,7 +1,6 @@
 package com.ashaxolotl.partytrick.spell.trick.projectile;
 
-import com.ashaxolotl.partytrick.PartyTrick;
-import com.ashaxolotl.partytrick.misc.Tags;
+import com.ashaxolotl.partytrick.misc.PartyTags;
 import dev.enjarai.trickster.spell.Pattern;
 import dev.enjarai.trickster.spell.SpellContext;
 import dev.enjarai.trickster.spell.blunder.*;
@@ -33,7 +32,7 @@ public class SummonSpitTrick extends Trick<SummonSpitTrick> {
 
     public EntityFragment fromEntity(SpellContext ctx, VectorFragment pos, EntityFragment entityFragment) throws BlunderException {
         var entity = entityFragment.getEntity(ctx).orElseThrow(() -> new UnknownEntityBlunder(this));
-        if (!(entity instanceof LivingEntity) || entity instanceof PlayerEntity || entity.getType().isIn(Tags.SPIT_BLACKLIST)) {
+        if (!(entity instanceof LivingEntity) || entity instanceof PlayerEntity || entity.getType().isIn(PartyTags.SPIT_BLACKLIST)) {
             throw new EntityInvalidBlunder(this);
         }
         return spell(ctx, pos, entity);
