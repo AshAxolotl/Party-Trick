@@ -1,6 +1,6 @@
 package com.ashaxolotl.partytrick.spell.trick.displayentity;
 
-import com.ashaxolotl.partytrick.entity.PartyBlockDisplayEntity;
+import com.ashaxolotl.partytrick.entity.PartyDisplayEntity;
 import com.ashaxolotl.partytrick.entity.PartyEntities;
 import dev.enjarai.trickster.particle.ModParticles;
 import dev.enjarai.trickster.spell.Pattern;
@@ -12,7 +12,6 @@ import dev.enjarai.trickster.spell.trick.Trick;
 import dev.enjarai.trickster.spell.type.Signature;
 import net.minecraft.block.Block;
 import net.minecraft.block.FluidBlock;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.decoration.DisplayEntity;
 
 import java.util.Optional;
@@ -28,7 +27,7 @@ public class SummonDisplayEntityTrick extends Trick<SummonDisplayEntityTrick> {
         var world = ctx.source().getWorld();
 
         try {
-            DisplayEntity.ItemDisplayEntity itemDisplay = EntityType.ITEM_DISPLAY.create(world);
+            DisplayEntity.ItemDisplayEntity itemDisplay = PartyEntities.ITEM_DISPLAY.create(world);
             itemDisplay.setItemStack(stack);
             itemDisplay.setPosition(pos.x(), pos.y(), pos.z());
 
@@ -57,7 +56,7 @@ public class SummonDisplayEntityTrick extends Trick<SummonDisplayEntityTrick> {
                 1, 0, 0, 0, 0
         );
 
-        PartyBlockDisplayEntity blockDisplayEntity = PartyEntities.PARTY_BLOCK_DISPLAY.create(world);
+        PartyDisplayEntity.BlockDisplayEntity blockDisplayEntity = PartyEntities.BLOCK_DISPLAY.create(world);
         blockDisplayEntity.setBlockState(state);
         blockDisplayEntity.setPosition(blockPos.getX(), blockPos.getY(), blockPos.getZ());
         // TODO KEEP NBT DATA??

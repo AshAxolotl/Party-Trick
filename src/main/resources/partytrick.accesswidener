@@ -5,5 +5,3 @@ accessible method net/minecraft/entity/Entity canStartRiding (Lnet/minecraft/ent
 
 accessible method net/minecraft/entity/passive/WolfEntity setCollarColor (Lnet/minecraft/util/DyeColor;)V
 accessible method net/minecraft/entity/passive/CatEntity setCollarColor (Lnet/minecraft/util/DyeColor;)V
-
-accessible field net/minecraft/entity/decoration/DisplayEntity interpolationTarget Lnet/minecraft/entity/decoration/DisplayEntity$InterpolationTarget;
