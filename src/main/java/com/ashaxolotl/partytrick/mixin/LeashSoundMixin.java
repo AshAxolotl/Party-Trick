@@ -32,22 +32,24 @@ public class LeashSoundMixin {
     @WrapOperation(method = "use", at = @At(value = "INVOKE", target = "Ldev/enjarai/trickster/cca/CasterComponent;playCastSound(FF)V"))
     private void sound(CasterComponent instance, float pitchRange, float startPitch, Operation<Void> original, @Local ItemStack stack) {
         int variant = stack.getOrDefault(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(0)).value();
-        if (variant == 1) {
-            playSound(((CasterComponentAccessor) instance).trickster$getPlayer(), PartySounds.CLICK, 1.5f, 1, 0);
-        } else {
-            original.call(instance, pitchRange, startPitch);
+        var player = ((CasterComponentAccessor) instance).trickster$getPlayer();
+        switch (variant) {
+            case 1 -> playSound(player, PartySounds.CLICK, 1.5f, 1, 0.1f);
+            case 2 -> playSound(player, PartySounds.WHIP, 1.0f, 1, 0.1f);
+            default -> original.call(instance, pitchRange, startPitch);
         }
     }
 
     @WrapOperation(method = "use", at = @At(value = "INVOKE", target = "Ldev/enjarai/trickster/cca/CasterComponent;queueCollarSpell(Ldev/enjarai/trickster/spell/SpellPart;Ljava/util/List;)Ljava/util/Optional;"))
     private Optional<Integer> cast(CasterComponent instance, SpellPart spell, List<Fragment> arguments, Operation<Optional<Integer>> original, @Local ItemStack stack) {
         int variant = stack.getOrDefault(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(0)).value();
-        if (variant == 1) {
-            playSound(((CasterComponentAccessor) instance).trickster$getPlayer(), PartySounds.CLICK, 1.5f, 1, 0);
-            return ((CasterComponentAccessor) instance).trickster$getCollarExecutionManager().queue(spell, arguments);
-        } else {
-            return original.call(instance, spell, arguments);
+        var player = ((CasterComponentAccessor) instance).trickster$getPlayer();
+        switch (variant) {
+            case 1 -> playSound(player, PartySounds.CLICK, 1.5f, 1, 0.1f);
+            case 2 -> playSound(player, PartySounds.WHIP, 1.0f, 1, 0.1f);
+            default -> {return original.call(instance, spell, arguments);}
         }
+        return ((CasterComponentAccessor) instance).trickster$getCollarExecutionManager().queue(spell, arguments);
     }
 
     @Unique
@@ -55,7 +57,7 @@ public class LeashSoundMixin {
         PartyTrick.LOGGER.info(target.toString());
         if (target instanceof ServerPlayerEntity serverPlayer) {
             serverPlayer.getServerWorld().playSoundFromEntity(
-                    null, serverPlayer, sound, SoundCategory.PLAYERS, volume , randomPitch(startPitch, pitchRange)
+                null, serverPlayer, sound, SoundCategory.PLAYERS, volume, randomPitch(startPitch, pitchRange)
             );
         }
     }

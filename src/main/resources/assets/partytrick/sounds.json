@@ -4,6 +4,12 @@
     "sounds": [
       "partytrick:click"
     ]
+  },
+  "whip": {
+    "subtitle": "partytrick.subtitle.whip",
+    "sounds": [
+      "partytrick:whip"
+    ]
   }
 }
 

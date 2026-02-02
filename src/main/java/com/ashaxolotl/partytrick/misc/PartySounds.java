@@ -7,6 +7,7 @@ import net.minecraft.sound.SoundEvent;
 
 public class PartySounds {
     public static final SoundEvent CLICK = register("click");
+    public static final SoundEvent WHIP = register("whip");
 
     private static SoundEvent register(String path) {
         var id = PartyTrick.id(path);
