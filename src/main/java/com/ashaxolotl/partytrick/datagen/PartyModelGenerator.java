@@ -24,7 +24,6 @@ public class PartyModelGenerator extends FabricModelProvider {
 
     // Map holding all variants used for generating the models and getting the max amount of variants
     public final static Map<Item, Tuple2<Model, Integer>> variants = new HashMap<>(Map.of(
-            PartyItems.PEPERNOOT, new Tuple2<>(Models.GENERATED, 0),
             ModItems.WAND, new Tuple2<>(Models.HANDHELD, 5),
             ModItems.LEASH, new Tuple2<>(Models.GENERATED, 2),
             ModItems.MIRROR_OF_EVALUATION, new Tuple2<>(Models.GENERATED, 2)
