@@ -1,5 +1,6 @@
 package com.ashaxolotl.partytrick.mixin;
 
+import com.ashaxolotl.partytrick.misc.PartyTags;
 import dev.enjarai.trickster.spell.ItemTriggerHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
@@ -23,7 +24,7 @@ public abstract class ItemMixin {
             )
     )
     private void triggerItemSpell(ItemStack stack, World world, LivingEntity user, CallbackInfoReturnable<ItemStack> cir) {
-        if (user instanceof ServerPlayerEntity) {
+        if (user instanceof ServerPlayerEntity && !(stack.isIn(PartyTags.GLUTTONS_HUNGER_BLACKLIST))) {
             ItemTriggerHelper.trigger((ServerPlayerEntity) user, stack, List.of());
         }
     }
