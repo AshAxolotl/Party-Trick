@@ -1,20 +1,13 @@
 package com.ashaxolotl.partytrick.spell.fragment;
 
-import com.ashaxolotl.partytrick.PartyTrick;
 import dev.enjarai.trickster.spell.Fragment;
-import dev.enjarai.trickster.spell.fragment.DimensionFragment;
 import dev.enjarai.trickster.spell.fragment.FragmentType;
 import io.wispforest.endec.StructEndec;
 import io.wispforest.endec.impl.StructEndecBuilder;
-import io.wispforest.owo.serialization.CodecUtils;
 import io.wispforest.owo.serialization.endec.MinecraftEndecs;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 
 public record SoundFragment(SoundEvent sound) implements Fragment {
     public static final StructEndec<SoundFragment> ENDEC = StructEndecBuilder.of(
