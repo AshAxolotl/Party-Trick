@@ -14,10 +14,10 @@ import dev.enjarai.trickster.spell.type.Signature;
 
 public class RideEntityTrick extends Trick<RideEntityTrick> {
     public RideEntityTrick() {
-        super(Pattern.of(7, 6, 4, 1, 0, 4, 3, 6, 8, 5, 4), Signature.of(FragmentType.ENTITY, FragmentType.ENTITY, RideEntityTrick::run, FragmentType.VOID));
+        super(Pattern.of(7, 6, 4, 1, 0, 4, 3, 6, 8, 5, 4), Signature.of(FragmentType.ENTITY, FragmentType.ENTITY, RideEntityTrick::run, FragmentType.ENTITY));
     }
 
-    public VoidFragment run(SpellContext ctx, EntityFragment riderFragment, EntityFragment mountFragment) {
+    public EntityFragment run(SpellContext ctx, EntityFragment riderFragment, EntityFragment mountFragment) {
         var rider = riderFragment.getEntity(ctx).orElseThrow(() -> new UnknownEntityBlunder(this));
         var mount = mountFragment.getEntity(ctx).orElseThrow(() -> new UnknownEntityBlunder(this));
 
@@ -28,6 +28,6 @@ public class RideEntityTrick extends Trick<RideEntityTrick> {
         ctx.useMana(this, 20 + (float) Math.pow(1.35, mount.distanceTo(rider)));
         rider.startRiding(mount);
 
-        return VoidFragment.INSTANCE;
+        return riderFragment;
     }
 }

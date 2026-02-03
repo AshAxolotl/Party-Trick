@@ -20,13 +20,13 @@ Returns the given entity's vehicle or void if it's not riding anything.
 
 <|ploy@trickster:templates|trick-id=partytrick:ride_entity,cost=20G + 1.35G^distance|>
 
-Causes the first given entity to ride the second entity. With the mana cost scaling based on distance between them.
+Causes the first given entity to ride the second entity, returning the rider entity. With the mana cost scaling based on distance between them.
 
 ;;;;;
 
 <|ploy@trickster:templates|trick-id=partytrick:dismount_entity,cost=distance^2 * 1G|>
 
-Causes the given entity to dismount their vehicle. Some entities keep their momentum when dismounted.
+Causes the given entity to dismount their vehicle, with some entities keep their momentum when dismounted.
 
 ;;;;;
 
