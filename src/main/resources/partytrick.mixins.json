@@ -3,6 +3,7 @@
   "package": "com.ashaxolotl.partytrick.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "LivingEntityMixin",
     "BlockMixin",
     "EntityMixin",
     "ItemMixin",

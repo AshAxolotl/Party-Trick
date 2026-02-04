@@ -38,7 +38,8 @@
 	],
 	"custom": {
 		"cardinal-components": [
-			"partytrick:muffles"
+			"partytrick:muffles",
+			"partytrick:armor_stand_scale"
 		]
 	},
 	"depends": {

@@ -10,6 +10,8 @@ import com.ashaxolotl.partytrick.spell.trick.displayentity.MoveDisplayEntityTric
 import com.ashaxolotl.partytrick.spell.trick.displayentity.SummonDisplayEntityTrick;
 import com.ashaxolotl.partytrick.spell.trick.entity.AddBreedingAgeTrick;
 import com.ashaxolotl.partytrick.spell.trick.entity.DismountEntityTrick;
+import com.ashaxolotl.partytrick.spell.trick.entity.SetArmorStandStateTrick;
+import com.ashaxolotl.partytrick.spell.trick.entity.query.GetArmorStandStateTrick;
 import com.ashaxolotl.partytrick.spell.trick.entity.query.GetBreedingAgeTrick;
 import com.ashaxolotl.partytrick.spell.trick.entity.RideEntityTrick;
 import com.ashaxolotl.partytrick.spell.trick.entity.query.GetVehicleTrick;
@@ -58,9 +60,13 @@ public class Tricks {
     public static final MuffleSoundTrick MUFFLE_SOUND = register("muffle_sound", new MuffleSoundTrick());
 
     // DISPLAY
-    public static final SummonDisplayEntityTrick SUMMON_DISPLAY_ENTITY = register("summon_display_entity", new SummonDisplayEntityTrick());
-    public static final DeleteDisplayEntityTrick DELETE_DISPLAY_ENTITY = register("delete_display_entity", new DeleteDisplayEntityTrick());
-    public static final MoveDisplayEntityTrick MOVE_DISPLAY_ENTITY = register("move_display_entity", new MoveDisplayEntityTrick());
+//    public static final SummonDisplayEntityTrick SUMMON_DISPLAY_ENTITY = register("summon_display_entity", new SummonDisplayEntityTrick());
+//    public static final DeleteDisplayEntityTrick DELETE_DISPLAY_ENTITY = register("delete_display_entity", new DeleteDisplayEntityTrick());
+//    public static final MoveDisplayEntityTrick MOVE_DISPLAY_ENTITY = register("move_display_entity", new MoveDisplayEntityTrick());
+
+    // Armor Stand
+    public static final GetArmorStandStateTrick GET_ARMOR_STAND_STATE = register("get_armor_stand_state", new GetArmorStandStateTrick());
+    public static final SetArmorStandStateTrick SET_ARMOR_STAND_STATE = register("set_armor_stand_state", new SetArmorStandStateTrick());
 
     public static <T extends Trick<?>> T register(String path, T trick) {
         return Registry.register(REGISTRY, PartyTrick.id(path), trick);
