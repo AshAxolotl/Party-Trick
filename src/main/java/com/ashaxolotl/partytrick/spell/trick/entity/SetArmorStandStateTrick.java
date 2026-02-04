@@ -82,9 +82,10 @@ public class SetArmorStandStateTrick extends Trick<SetArmorStandStateTrick> {
 
     private static void setScale(ArmorStandEntity armorStand, double amount) {
         var scaleAttr = armorStand.getAttributeInstance(EntityAttributes.GENERIC_SCALE);
-        scaleAttr.removeModifier(PartyTrick.id("armor_stand_scale"));
+        var id = PartyTrick.id("armor_stand_scale");
+        scaleAttr.removeModifier(id);
         if (amount != 1.0) {
-            scaleAttr.addPersistentModifier(new EntityAttributeModifier(PartyTrick.id("armor_stand_scale"), MathHelper.clamp(amount, 0.0625, 1.5)-1.0, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+            scaleAttr.addPersistentModifier(new EntityAttributeModifier(id, MathHelper.clamp(amount, 0.0625, 1.5)-1.0, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
         } // TODO make limits configurable?
     }
 }
