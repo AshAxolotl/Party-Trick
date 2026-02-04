@@ -1,12 +1,14 @@
 package com.ashaxolotl.partytrick.spell.trick.entity;
 
-import com.ashaxolotl.partytrick.cca.PartyEntityComponents;
+import com.ashaxolotl.partytrick.PartyTrick;
 import dev.enjarai.trickster.spell.Pattern;
 import dev.enjarai.trickster.spell.SpellContext;
 import dev.enjarai.trickster.spell.blunder.*;
 import dev.enjarai.trickster.spell.fragment.*;
 import dev.enjarai.trickster.spell.trick.Trick;
 import dev.enjarai.trickster.spell.type.Signature;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.util.math.EulerAngle;
 import net.minecraft.util.math.MathHelper;
@@ -51,7 +53,7 @@ public class SetArmorStandStateTrick extends Trick<SetArmorStandStateTrick> {
         ArmorStandEntity armorStand = getAmorStand(ctx, entityFragment);
         switch (index.asInt()) {
             case 6 -> armorStand.setYaw(MathHelper.wrapDegrees((float) numberFragment.number()));
-            case 7 -> PartyEntityComponents.ARMOR_STAND_SCALE.get(armorStand).setScale(MathHelper.clamp(numberFragment.number(), 0.0625, 1.5)); // TODO make this configurable?
+            case 7 -> setScale(armorStand, numberFragment.number());
             default -> throw (index.asInt() < 6) ? new NumberTooSmallBlunder(this, 6) : new NumberTooLargeBlunder(this, 7);
         }
         ctx.useMana(this, MANA_COST);
@@ -76,5 +78,13 @@ public class SetArmorStandStateTrick extends Trick<SetArmorStandStateTrick> {
         }
         ctx.useMana(this, MANA_COST);
         return entityFragment;
+    }
+
+    private static void setScale(ArmorStandEntity armorStand, double amount) {
+        var scaleAttr = armorStand.getAttributeInstance(EntityAttributes.GENERIC_SCALE);
+        scaleAttr.removeModifier(PartyTrick.id("armor_stand_scale"));
+        if (amount != 1.0) {
+            scaleAttr.addPersistentModifier(new EntityAttributeModifier(PartyTrick.id("armor_stand_scale"), MathHelper.clamp(amount, 0.0625, 1.5)-1.0, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+        } // TODO make limits configurable?
     }
 }

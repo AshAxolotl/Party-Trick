@@ -1,5 +1,6 @@
 package com.ashaxolotl.partytrick.spell.trick.entity.query;
 
+import com.ashaxolotl.partytrick.PartyTrick;
 import com.ashaxolotl.partytrick.cca.PartyEntityComponents;
 import dev.enjarai.trickster.spell.Fragment;
 import dev.enjarai.trickster.spell.Pattern;
@@ -9,6 +10,7 @@ import dev.enjarai.trickster.spell.fragment.*;
 import dev.enjarai.trickster.spell.trick.Trick;
 import dev.enjarai.trickster.spell.type.RetType;
 import dev.enjarai.trickster.spell.type.Signature;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.util.math.EulerAngle;
 import org.joml.Vector3d;
@@ -29,7 +31,7 @@ public class GetArmorStandStateTrick extends Trick<GetArmorStandStateTrick> {
                 case 4 -> eulerToVector(armorStand.getLeftLegRotation());
                 case 5 -> eulerToVector(armorStand.getRightLegRotation());
                 case 6 -> new NumberFragment(armorStand.getYaw());
-                case 7 -> new NumberFragment(PartyEntityComponents.ARMOR_STAND_SCALE.get(armorStand).getScale());
+                case 7 -> new NumberFragment(getScale(armorStand));
                 case 8 -> BooleanFragment.of(armorStand.hasNoGravity());
                 case 9 -> BooleanFragment.of(armorStand.isInvisible());
                 case 10 -> BooleanFragment.of(armorStand.shouldHideBasePlate());
@@ -46,5 +48,10 @@ public class GetArmorStandStateTrick extends Trick<GetArmorStandStateTrick> {
 
     private static VectorFragment eulerToVector(EulerAngle eulerAngle) {
         return new VectorFragment(new Vector3d(eulerAngle.getPitch(), eulerAngle.getYaw(), eulerAngle.getRoll()));
+    }
+
+    private static double getScale(ArmorStandEntity armorStand) {
+        var modifier = armorStand.getAttributeInstance(EntityAttributes.GENERIC_SCALE).getModifier(PartyTrick.id("armor_stand_scale"));
+        return (modifier == null) ? 1.0 : modifier.value() + 1.0;
     }
 }
