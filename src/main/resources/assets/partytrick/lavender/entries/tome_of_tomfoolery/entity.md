@@ -4,6 +4,14 @@
   "icon": "minecraft:pig_spawn_egg",
   "category": "trickster:tricks",
   "additional_search_terms": [
+    "Partner Ingress",
+    "Passion Ploy",
+    "Descend Ploy",
+    "Memento’s Ingress",
+    "Temporal Ploy",
+    "Pinocchio's Ingress",
+    "Cleo's Ploy",
+    "Mr. Jollyboy's Ploy"
     ]
 }
 ```
