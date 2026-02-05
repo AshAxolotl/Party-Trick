@@ -4,7 +4,7 @@ import com.ashaxolotl.partytrick.entity.PartyEntities;
 import com.ashaxolotl.partytrick.item.PartyItems;
 import com.ashaxolotl.partytrick.misc.PartySounds;
 import com.ashaxolotl.partytrick.net.PartyNetworking;
-import com.ashaxolotl.partytrick.spell.fragment.Fragments;
+import com.ashaxolotl.partytrick.spell.fragment.FragmentTypes;
 import com.ashaxolotl.partytrick.spell.trick.Tricks;
 import net.fabricmc.api.ModInitializer;
 
@@ -29,7 +29,7 @@ public class PartyTrick implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		Fragments.register();
+		FragmentTypes.register();
 		Tricks.register();
 
 		PartyItems.register();
