@@ -1,6 +1,6 @@
 package com.ashaxolotl.partytrick.spell.trick.sound;
 
-import com.ashaxolotl.partytrick.spell.fragment.Fragments;
+import com.ashaxolotl.partytrick.spell.fragment.FragmentTypes;
 import com.ashaxolotl.partytrick.spell.fragment.SoundFragment;
 import dev.enjarai.trickster.spell.Pattern;
 import dev.enjarai.trickster.spell.SpellContext;
@@ -21,7 +21,7 @@ import java.util.Optional;
 
 public class PlaySoundTrick extends Trick<PlaySoundTrick> {
     public PlaySoundTrick() {
-        super(Pattern.of(2, 1, 4, 7, 6, 4), Signature.of(FragmentType.VECTOR, Fragments.SOUND, FragmentType.NUMBER.optionalOfArg(), FragmentType.NUMBER.optionalOfArg(), FragmentType.ENTITY.variadicOfArg().unpack().optionalOfArg(), PlaySoundTrick::play, FragmentType.VECTOR));
+        super(Pattern.of(2, 1, 4, 7, 6, 4), Signature.of(FragmentType.VECTOR, FragmentTypes.SOUND, FragmentType.NUMBER.optionalOfArg(), FragmentType.NUMBER.optionalOfArg(), FragmentType.ENTITY.variadicOfArg().unpack().optionalOfArg(), PlaySoundTrick::play, FragmentType.VECTOR));
     }
 
     public VectorFragment play(SpellContext ctx, VectorFragment location, SoundFragment soundFragment, Optional<NumberFragment> optionalVolume, Optional<NumberFragment> optionalPitch, Optional<List<EntityFragment>> targets) throws BlunderException {

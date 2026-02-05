@@ -8,7 +8,7 @@ import net.minecraft.registry.Registry;
 
 import java.util.OptionalInt;
 
-public class Fragments {
+public class FragmentTypes {
     public static final FragmentType<SoundFragment> SOUND = register("sound", SoundFragment.ENDEC, 1269642);
 
     private static <T extends Fragment> FragmentType<T> register(String name, StructEndec<T> codec, int color) {

@@ -17,7 +17,7 @@ public record SoundFragment(SoundEvent sound) implements Fragment {
 
     @Override
     public FragmentType<?> type() {
-        return Fragments.SOUND;
+        return FragmentTypes.SOUND;
     }
 
     @Override

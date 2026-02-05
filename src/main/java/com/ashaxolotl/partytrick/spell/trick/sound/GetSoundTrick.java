@@ -1,7 +1,7 @@
 package com.ashaxolotl.partytrick.spell.trick.sound;
 
 import com.ashaxolotl.partytrick.misc.ServerSoundStorage;
-import com.ashaxolotl.partytrick.spell.fragment.Fragments;
+import com.ashaxolotl.partytrick.spell.fragment.FragmentTypes;
 import com.ashaxolotl.partytrick.spell.fragment.SoundFragment;
 import dev.enjarai.trickster.spell.Pattern;
 import dev.enjarai.trickster.spell.SpellContext;
@@ -20,7 +20,7 @@ import java.util.List;
 
 public class GetSoundTrick extends Trick<GetSoundTrick> {
     public GetSoundTrick() {
-        super(Pattern.of(1, 2, 5, 8, 7, 6, 4, 1), Signature.of(FragmentType.ENTITY, GetSoundTrick::get, Fragments.SOUND.listOfRet()));
+        super(Pattern.of(1, 2, 5, 8, 7, 6, 4, 1), Signature.of(FragmentType.ENTITY, GetSoundTrick::get, FragmentTypes.SOUND.listOfRet()));
     }
 
     public List<SoundFragment> get(SpellContext ctx, EntityFragment entityFragment) throws BlunderException {
