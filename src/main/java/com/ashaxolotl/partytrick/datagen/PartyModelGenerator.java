@@ -24,6 +24,7 @@ public class PartyModelGenerator extends FabricModelProvider {
 
     // Map holding all variants used for generating the models and getting the max amount of variants
     public final static Map<Item, Tuple2<Model, Integer>> variants = new HashMap<>(Map.of(
+//            PartyItems.PEPERNOOT, new Tuple2<>(Models.GENERATED, 1),
             ModItems.WAND, new Tuple2<>(Models.HANDHELD, 5),
             ModItems.LEASH, new Tuple2<>(Models.GENERATED, 2),
             ModItems.MIRROR_OF_EVALUATION, new Tuple2<>(Models.GENERATED, 2)
@@ -39,7 +40,7 @@ public class PartyModelGenerator extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-//        itemModelGenerator.register(PartyItems.PEPERNOOT, Models.GENERATED);
+        itemModelGenerator.register(PartyItems.PEPERNOOT, Models.GENERATED);
 
         // gen for variants
         variants.forEach((item, tuple) -> {
