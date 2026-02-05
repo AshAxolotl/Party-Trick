@@ -18,6 +18,7 @@ public class PartyTags {
     public static final TagKey<EntityType<?>> MOUNT_BLACKLIST = entity("mount_blacklist"); // Entities that cannot be used as mount
     public static final TagKey<EntityType<?>> RIDER_BLACKLIST = entity("rider_blacklist"); // Entities that cannot be given as rider for ride entity trick
     public static final TagKey<EntityType<?>> DISMOUNT_BLACKLIST = entity("dismount_blacklist"); // Entities that cannot be dismounted from their vehicle
+    public static final TagKey<EntityType<?>> ARMOR_STAND_MOVE_WHITELIST = entity("armor_stand_move_whitelist"); // Entities that CAN be moved using the move armor stand ploy
 
     private static TagKey<Block> block(String id) {
         return TagKey.of(RegistryKeys.BLOCK, PartyTrick.id(id));

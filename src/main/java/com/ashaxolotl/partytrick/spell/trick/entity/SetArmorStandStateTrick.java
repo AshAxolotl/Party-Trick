@@ -18,7 +18,7 @@ public class SetArmorStandStateTrick extends Trick<SetArmorStandStateTrick> {
     final static int MANA_COST = 1; // TODO think of the magic number
 
     public SetArmorStandStateTrick() {
-        super(Pattern.of(3, 4, 5), Signature.of(FragmentType.ENTITY, FragmentType.NUMBER, FragmentType.BOOLEAN, SetArmorStandStateTrick::setBoolean, FragmentType.ENTITY));
+        super(Pattern.of(1, 0, 2, 1, 6, 3, 7, 5, 8, 1, 4, 7), Signature.of(FragmentType.ENTITY, FragmentType.NUMBER, FragmentType.BOOLEAN, SetArmorStandStateTrick::setBoolean, FragmentType.ENTITY));
         overload(Signature.of(FragmentType.ENTITY, FragmentType.NUMBER, FragmentType.NUMBER, SetArmorStandStateTrick::setNumber, FragmentType.ENTITY));
         overload(Signature.of(FragmentType.ENTITY, FragmentType.NUMBER, FragmentType.VECTOR, SetArmorStandStateTrick::setVector, FragmentType.ENTITY));
     }
@@ -65,8 +65,8 @@ public class SetArmorStandStateTrick extends Trick<SetArmorStandStateTrick> {
         boolean bool = booleanFragment.bool;
         switch (index.asInt()) {
             case 8 -> armorStand.setNoGravity(bool);
-            case 9 -> armorStand.setInvisible(bool);
-            case 10 -> armorStand.setHideBasePlate(bool);
+            case 9 -> armorStand.setHideBasePlate(bool);
+            case 10 -> armorStand.setInvisible(bool);
             case 11 -> armorStand.setShowArms(bool);
             case 12 -> armorStand.setSmall(bool);
             case 13 -> armorStand.setCustomNameVisible(bool);

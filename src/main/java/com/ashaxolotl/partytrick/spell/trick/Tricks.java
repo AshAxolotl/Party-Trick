@@ -8,12 +8,9 @@ import com.ashaxolotl.partytrick.spell.trick.color.GetColorTrick;
 import com.ashaxolotl.partytrick.spell.trick.displayentity.DeleteDisplayEntityTrick;
 import com.ashaxolotl.partytrick.spell.trick.displayentity.MoveDisplayEntityTrick;
 import com.ashaxolotl.partytrick.spell.trick.displayentity.SummonDisplayEntityTrick;
-import com.ashaxolotl.partytrick.spell.trick.entity.AddBreedingAgeTrick;
-import com.ashaxolotl.partytrick.spell.trick.entity.DismountEntityTrick;
-import com.ashaxolotl.partytrick.spell.trick.entity.SetArmorStandStateTrick;
+import com.ashaxolotl.partytrick.spell.trick.entity.*;
 import com.ashaxolotl.partytrick.spell.trick.entity.query.GetArmorStandStateTrick;
 import com.ashaxolotl.partytrick.spell.trick.entity.query.GetBreedingAgeTrick;
-import com.ashaxolotl.partytrick.spell.trick.entity.RideEntityTrick;
 import com.ashaxolotl.partytrick.spell.trick.entity.query.GetVehicleTrick;
 import com.ashaxolotl.partytrick.spell.trick.misc.PepernotenCreationTrick;
 import com.ashaxolotl.partytrick.spell.trick.misc.SetCustomModelDataTrick;
@@ -67,6 +64,7 @@ public class Tricks {
     // Armor Stand
     public static final GetArmorStandStateTrick GET_ARMOR_STAND_STATE = register("get_armor_stand_state", new GetArmorStandStateTrick());
     public static final SetArmorStandStateTrick SET_ARMOR_STAND_STATE = register("set_armor_stand_state", new SetArmorStandStateTrick());
+    public static final MoveArmorStandTrick MOVE_ARMOR_STAND = register("move_armor_stand", new MoveArmorStandTrick());
 
     public static <T extends Trick<?>> T register(String path, T trick) {
         return Registry.register(REGISTRY, PartyTrick.id(path), trick);
